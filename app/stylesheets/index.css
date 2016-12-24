@@ -1,0 +1,106 @@
+@font-face {
+  font-family: 'Montserrat-Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
+::selection {
+  background-color: #afd7ff;
+}
+
+html {
+  -webkit-app-region: drag;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: #628db6;
+  color: #fff;
+  font-family: 'Montserrat-Regular';
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+input {
+  -webkit-app-region: no-drag;
+  border: solid 1px #ccc;
+  border-radius: 3px;
+  font-size: 0.8em;
+  height: 20px;
+  padding: 0 3px;
+}
+
+#fetch-button {
+  -webkit-app-region: no-drag;
+  background-color: #628db6;
+  border: 2px solid #fff;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8em;
+  margin-left: 5px;
+  padding: 13px 17px;
+}
+
+#fetch-button:focus {
+  outline: none;
+}
+
+#fetch-button:hover {
+  background-color: #3e5b76;
+}
+
+#main {
+  padding: 20px;
+}
+
+#setting {
+  position: absolute;
+  width: 560px;
+}
+
+#setting th {
+  font-size: 0.9em;
+  text-align: left;
+  white-space: nowrap;
+  width: 115px;
+}
+
+#setting td {
+  width: 350px;
+}
+
+#setting td input {
+  width: 340px;
+}
+
+#container {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 465px;
+  left: 20px;
+  margin-top: 65px;
+  overflow-y: scroll;
+  position: fixed;
+  right: 20px;
+}
+
+.issue {
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: #3e5b76;
+  cursor: pointer;
+  font-size: 0.8em;
+  margin-top: 5px;
+  padding: 5px;
+  word-break: break-all;
+}
+
+.issue:first-child {
+  margin-top: 0;
+}

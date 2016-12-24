@@ -1,0 +1,35 @@
+{
+  "name": "redmine-now",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "electron ./app/main.js",
+    "prepare": "./bin/prepare.sh",
+    "build": "npm run build:mac",
+    "build:mac": "./bin/build-mac.sh",
+    "pack": "npm run pack:mac",
+    "pack:mac": "./bin/pack-mac.sh",
+    "release": "npm run prepare && npm run pack"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "electron-builder": "~7.0.0",
+    "electron-prebuilt": "1.4.1"
+  },
+  "build": {
+    "appId": "redmine-now",
+    "category": "public.app-category.productivity",
+    "files": ["**/*", "!**/npm-debug\\.log", "!etc"],
+    "copyright": "Copyright (c) 2016 emsk",
+    "mac": {
+      "target": "dmg"
+    },
+    "dmg": {
+      "icon-size": 120,
+      "contents": [
+        { "x": 370, "y": 300, "type": "link", "path": "/Applications" },
+        { "x": 130, "y": 300, "type": "file" }
+      ]
+    }
+  }
+}

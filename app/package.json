@@ -1,0 +1,11 @@
+{
+  "name": "redmine-now",
+  "productName": "Redmine Now",
+  "version": "0.1.0",
+  "description": "Redmine Now",
+  "main": "main.js",
+  "author": "emsk",
+  "license": "MIT",
+  "dependencies": {
+  }
+}
