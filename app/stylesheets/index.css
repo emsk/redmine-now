@@ -77,15 +77,28 @@ input {
   width: 340px;
 }
 
+#headers {
+  display: flex;
+  font-size: 0.9em;
+  height: 25px;
+  margin-top: 65px;
+}
+
+.header-column {
+  flex: 1;
+  text-align: center;
+}
+
 #container {
   display: flex;
+}
+
+.column {
+  display: flex;
+  flex: 1;
   flex-flow: column nowrap;
-  height: 465px;
-  left: 20px;
-  margin-top: 65px;
+  height: 435px;
   overflow-y: scroll;
-  position: fixed;
-  right: 20px;
 }
 
 .issue {

@@ -8,12 +8,43 @@
 
   class RedmineNow {
     constructor() {
+      this._issueStatuses = [];
     }
 
     initEventListener() {
       document.getElementById('fetch-button').addEventListener('click', () => {
         this.fetch();
       });
+
+      return this;
+    }
+
+    fetchIssueStatus() {
+      const xhr = new XMLHttpRequest();
+
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+          this.handleResponseFetchIssueStatus(xhr.status, xhr.responseText);
+        }
+      };
+
+      const url = document.getElementById('url').value;
+      const apiKey = document.getElementById('api-key').value;
+      xhr.open('GET', `${url}/issue_statuses.json`);
+      xhr.setRequestHeader('X-Redmine-API-Key', apiKey);
+      xhr.send();
+
+      return this;
+    }
+
+    handleResponseFetchIssueStatus(status, responseText) {
+      if (status === 200) {
+        this._issueStatuses = JSON.parse(responseText).issue_statuses;
+        const newIssueColumnHeader = document.getElementById('new-issue-header');
+        newIssueColumnHeader.innerText = this._issueStatuses[0].name;
+        const inProgressIssueColumnHeader = document.getElementById('in-progress-issue-header');
+        inProgressIssueColumnHeader.innerText = this._issueStatuses[1].name;
+      }
 
       return this;
     }
@@ -60,19 +91,33 @@
 
       if (issueCount === 0) return this;
 
-      const container = document.getElementById('container');
-      issues.forEach((issue) => {
-        const box = document.createElement('div');
-        const url = document.getElementById('url').value;
+      const newIssueColumn = document.getElementById('new-issue');
+      const inProgressIssueColumn = document.getElementById('in-progress-issue');
+      const url = document.getElementById('url').value;
 
-        box.id = `issue-${issue.id}`;
+      issues.forEach((issue) => {
+        const boxId = `issue-${issue.id}`;
+        const currentBox = document.getElementById(boxId);
+        if (currentBox) {
+          currentBox.parentNode.removeChild(currentBox);
+        }
+
+        const box = document.createElement('div');
+        box.id = boxId;
         box.className = 'issue';
-        box.innerText = `${issue.status.name} - #${issue.id} ${issue.subject}`;
+        box.innerText = `#${issue.id} ${issue.subject}`;
         box.addEventListener('click', () => {
           shell.openExternal(`${url}/issues/${issue.id}`);
         });
 
-        container.insertBefore(box, container.firstChild);
+        switch (issue.status.id) {
+          case this._issueStatuses[0].id:
+            newIssueColumn.insertBefore(box, newIssueColumn.firstChild);
+            break;
+          case this._issueStatuses[1].id:
+            inProgressIssueColumn.insertBefore(box, inProgressIssueColumn.firstChild);
+            break;
+        }
       });
 
       return this;
@@ -87,6 +132,7 @@
   window.addEventListener('load', () => {
     const redmineNow = new RedmineNow();
     redmineNow.initEventListener()
+      .fetchIssueStatus()
       .updateLastExecutionTime();
   });
 })();
