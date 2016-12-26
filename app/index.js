@@ -4,11 +4,31 @@
   const electron = require('electron');
   const remote = electron.remote;
   const shell = remote.shell;
+  const Menu = remote.Menu;
   const fs = require('fs');
 
   class RedmineNow {
     constructor() {
       this._issueStatuses = [];
+    }
+
+    initMenu() {
+      const appMenu = Menu.buildFromTemplate([
+        {
+          label: 'Edit',
+          submenu: [
+            { role: 'undo' },
+            { role: 'redo' },
+            { role: 'cut' },
+            { role: 'copy' },
+            { role: 'paste' },
+            { role: 'selectall' }
+          ]
+        }
+      ]);
+      Menu.setApplicationMenu(appMenu);
+
+      return this;
     }
 
     initEventListener() {
@@ -131,7 +151,8 @@
 
   window.addEventListener('load', () => {
     const redmineNow = new RedmineNow();
-    redmineNow.initEventListener()
+    redmineNow.initMenu()
+      .initEventListener()
       .fetchIssueStatus()
       .updateLastExecutionTime();
   });
