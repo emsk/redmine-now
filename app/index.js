@@ -70,6 +70,10 @@
     }
 
     fetch() {
+      if (this._issueStatuses.length === 0) {
+        this.fetchIssueStatus();
+      }
+
       const xhr = new XMLHttpRequest();
 
       xhr.onreadystatechange = () => {
