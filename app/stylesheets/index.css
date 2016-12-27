@@ -69,11 +69,11 @@ input {
   width: 115px;
 }
 
-#setting td {
+.setting-redmine {
   width: 350px;
 }
 
-#setting td input {
+.setting-redmine input {
   width: 340px;
 }
 
