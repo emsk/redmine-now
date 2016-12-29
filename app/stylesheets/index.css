@@ -77,11 +77,16 @@ input {
   width: 340px;
 }
 
+.setting-number input {
+  text-align: right;
+  width: 60px;
+}
+
 #headers {
   display: flex;
   font-size: 0.9em;
   height: 25px;
-  margin-top: 65px;
+  margin-top: 90px;
 }
 
 .header-column {
@@ -97,7 +102,7 @@ input {
   display: flex;
   flex: 1;
   flex-flow: column nowrap;
-  height: calc(100vh - 130px);
+  height: calc(100vh - 155px);
   overflow-y: scroll;
 }
 

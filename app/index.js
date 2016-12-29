@@ -125,6 +125,11 @@
         'sort=updated_on:desc'
       ];
 
+      const projectId = document.getElementById('project-id').value;
+      if (projectId !== '') {
+        params.unshift(`project_id=${projectId}`);
+      }
+
       return `?${params.join('&')}`;
     }
 
@@ -169,6 +174,7 @@
     displaySettings() {
       document.getElementById('url').value = localStorage.getItem('url');
       document.getElementById('api-key').value = localStorage.getItem('apiKey');
+      document.getElementById('project-id').value = localStorage.getItem('projectId');
 
       return this;
     }
@@ -176,6 +182,7 @@
     updateSettings() {
       localStorage.setItem('url', document.getElementById('url').value);
       localStorage.setItem('apiKey', document.getElementById('api-key').value);
+      localStorage.setItem('projectId', document.getElementById('project-id').value);
 
       return this;
     }
