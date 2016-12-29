@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "description": "Redmine Now",
   "main": "main.js",
+  "repository": "emsk/redmine-now",
   "author": "emsk",
   "license": "MIT",
   "dependencies": {

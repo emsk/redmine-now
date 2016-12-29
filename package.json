@@ -1,6 +1,7 @@
 {
   "name": "redmine-now",
   "version": "0.1.0",
+  "repository": "emsk/redmine-now",
   "scripts": {
     "start": "electron ./app/main.js",
     "prepare": "./bin/prepare.sh",
