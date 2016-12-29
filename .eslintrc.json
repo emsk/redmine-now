@@ -1,0 +1,25 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "indent": ["error", 2],
+    "no-var": "error",
+    "prefer-template": "error",
+    "quotes": ["error", "single"],
+    "require-jsdoc": ["warn", {
+      "require": {
+        "FunctionDeclaration": true,
+        "ClassDeclaration": true,
+        "MethodDefinition": true
+      }
+    }],
+    "semi": ["error", "always"],
+    "strict": "error",
+    "template-curly-spacing": ["error", "never"],
+    "valid-jsdoc": "warn"
+  }
+}

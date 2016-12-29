@@ -4,6 +4,8 @@
   "scripts": {
     "start": "electron ./app/main.js",
     "prepare": "./bin/prepare.sh",
+    "lint": "npm run lint:js",
+    "lint:js": "./bin/lint-js.sh",
     "build": "npm run build:mac",
     "build:mac": "./bin/build-mac.sh",
     "pack": "npm run pack:mac",
@@ -14,7 +16,8 @@
   },
   "devDependencies": {
     "electron-builder": "~7.0.0",
-    "electron-prebuilt": "1.4.1"
+    "electron-prebuilt": "1.4.1",
+    "eslint": "~3.12.2"
   },
   "build": {
     "appId": "redmine-now",
