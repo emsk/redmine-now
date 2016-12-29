@@ -97,7 +97,7 @@ input {
   display: flex;
   flex: 1;
   flex-flow: column nowrap;
-  height: 435px;
+  height: calc(100vh - 130px);
   overflow-y: scroll;
 }
 
