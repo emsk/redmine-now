@@ -17,7 +17,7 @@
 
   app.on('ready', () => {
     win = new BrowserWindow({
-      width: 600,
+      width: 850,
       height: 600
     });
 
