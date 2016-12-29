@@ -7,9 +7,7 @@
   let win = null;
 
   app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-      app.quit();
-    }
+    app.quit();
   });
 
   // Avoid the slow performance issue when renderer window is hidden
