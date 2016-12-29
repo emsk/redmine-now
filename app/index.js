@@ -59,11 +59,22 @@
 
     handleResponseFetchIssueStatus(status, responseText) {
       if (status === 200) {
+        const headers = document.getElementById('headers');
+        const container = document.getElementById('container');
         this._issueStatuses = JSON.parse(responseText).issue_statuses;
-        const newIssueColumnHeader = document.getElementById('new-issue-header');
-        newIssueColumnHeader.innerText = this._issueStatuses[0].name;
-        const inProgressIssueColumnHeader = document.getElementById('in-progress-issue-header');
-        inProgressIssueColumnHeader.innerText = this._issueStatuses[1].name;
+
+        this._issueStatuses.forEach((issueStatus) => {
+          const header = document.createElement('div');
+          header.id = `header-column-status-${issueStatus.id}`;
+          header.className = 'header-column';
+          header.innerText = issueStatus.name;
+          headers.appendChild(header);
+
+          const column = document.createElement('div');
+          column.id = `column-status-${issueStatus.id}`;
+          column.className = 'column';
+          container.appendChild(column);
+        });
       }
 
       return this;
@@ -104,6 +115,7 @@
       const lastExecutionTime = localStorage.getItem('lastExecutionTime');
       const params = [
         `updated_on=%3E%3D${lastExecutionTime}`,
+        'status_id=*',
         'sort=updated_on:desc'
       ];
 
@@ -134,14 +146,8 @@
           shell.openExternal(`${url}/issues/${issue.id}`);
         });
 
-        switch (issue.status.id) {
-          case this._issueStatuses[0].id:
-            newIssueColumn.insertBefore(box, newIssueColumn.firstChild);
-            break;
-          case this._issueStatuses[1].id:
-            inProgressIssueColumn.insertBefore(box, inProgressIssueColumn.firstChild);
-            break;
-        }
+        const column = document.getElementById(`column-status-${issue.status.id}`);
+        column.insertBefore(box, column.firstChild);
       });
 
       return this;
