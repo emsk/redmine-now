@@ -5,7 +5,6 @@
   const remote = electron.remote;
   const shell = remote.shell;
   const Menu = remote.Menu;
-  const fs = require('fs');
 
   class RedmineNow {
     constructor() {
@@ -138,8 +137,6 @@
 
       if (issueCount === 0) return this;
 
-      const newIssueColumn = document.getElementById('new-issue');
-      const inProgressIssueColumn = document.getElementById('in-progress-issue');
       const url = document.getElementById('url').value;
 
       issues.forEach((issue) => {
