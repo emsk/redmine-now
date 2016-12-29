@@ -22,7 +22,9 @@
             { role: 'cut' },
             { role: 'copy' },
             { role: 'paste' },
-            { role: 'selectall' }
+            { role: 'selectall' },
+            { type: 'separator' },
+            { role: 'quit' }
           ]
         }
       ]);
