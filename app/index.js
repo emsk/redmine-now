@@ -38,6 +38,10 @@
         this.fetch();
       });
 
+      remote.getCurrentWindow().on('close', () => {
+        this.updateSettings();
+      });
+
       return this;
     }
 
@@ -158,6 +162,22 @@
     updateLastExecutionTime() {
       const lastExecutionTime = (new Date()).toISOString().replace(/\.\d+Z$/, 'Z');
       localStorage.setItem('lastExecutionTime', lastExecutionTime);
+
+      return this;
+    }
+
+    displaySettings() {
+      document.getElementById('url').value = localStorage.getItem('url');
+      document.getElementById('api-key').value = localStorage.getItem('apiKey');
+
+      return this;
+    }
+
+    updateSettings() {
+      localStorage.setItem('url', document.getElementById('url').value);
+      localStorage.setItem('apiKey', document.getElementById('api-key').value);
+
+      return this;
     }
   }
 
@@ -165,6 +185,7 @@
     const redmineNow = new RedmineNow();
     redmineNow.initMenu()
       .initEventListener()
+      .displaySettings()
       .fetchIssueStatus()
       .updateLastExecutionTime();
   });
