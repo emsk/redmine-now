@@ -1,4 +1,4 @@
-# Redmine Now
+#![Redmine Now](resources/redmine-now-logo.png?raw=true)
 
 [![Build Status](https://travis-ci.org/emsk/redmine-now.svg?branch=master)](https://travis-ci.org/emsk/redmine-now)
 [![Dependency Status](https://gemnasium.com/badges/github.com/emsk/redmine-now.svg)](https://gemnasium.com/github.com/emsk/redmine-now)
