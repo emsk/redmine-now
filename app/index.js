@@ -37,6 +37,10 @@
         this.fetch();
       });
 
+      document.getElementById('show-hide-button').addEventListener('click', () => {
+        this.toggleSettings();
+      });
+
       remote.getCurrentWindow().on('close', () => {
         this.updateSettings();
       });
@@ -180,6 +184,15 @@
       localStorage.setItem('url', document.getElementById('url').value);
       localStorage.setItem('apiKey', document.getElementById('api-key').value);
       localStorage.setItem('projectId', document.getElementById('project-id').value);
+
+      return this;
+    }
+
+    toggleSettings() {
+      const elements = Array.prototype.slice.call(document.getElementsByTagName('input'));
+      elements.forEach((element) => {
+        element.classList.toggle('mask');
+      });
 
       return this;
     }

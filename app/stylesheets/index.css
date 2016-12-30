@@ -32,7 +32,7 @@ input {
   padding: 0 3px;
 }
 
-#fetch-button {
+button {
   -webkit-app-region: no-drag;
   background-color: #628db6;
   border: 2px solid #fff;
@@ -42,14 +42,14 @@ input {
   font: inherit;
   font-size: 0.8em;
   margin-left: 5px;
-  padding: 13px 17px;
+  padding: 13px 13px;
 }
 
-#fetch-button:focus {
+button:focus {
   outline: none;
 }
 
-#fetch-button:hover {
+button:hover {
   background-color: #3e5b76;
 }
 
@@ -59,7 +59,7 @@ input {
 
 #setting {
   position: absolute;
-  width: 560px;
+  width: 730px;
 }
 
 #setting th {
@@ -80,6 +80,12 @@ input {
 .setting-number input {
   text-align: right;
   width: 60px;
+}
+
+.mask {
+  background-color: #628db6;
+  border: solid 1px #fff;
+  color: #628db6;
 }
 
 #headers {
@@ -108,7 +114,7 @@ input {
 
 .issue {
   background-color: #fff;
-  border: 1px solid #aaa;
+  border: 1px solid #ccc;
   border-radius: 3px;
   box-sizing: border-box;
   color: #3e5b76;
