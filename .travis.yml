@@ -1,0 +1,9 @@
+os:
+  - osx
+language: node_js
+node_js:
+  - "6"
+branches:
+  only:
+    - master
+script: ./bin/travis-build.sh
