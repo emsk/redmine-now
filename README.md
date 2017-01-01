@@ -8,6 +8,10 @@ Redmine Now is a desktop app to know what's happening now on your Redmine.
 
 ![Screenshot](examples/redmine-now.png?raw=true)
 
+## Downloads
+
+Installers for macOS and Windows can be found on the [releases](../../releases) page.
+
 ## Development
 
 Built with [Electron](http://electron.atom.io).
