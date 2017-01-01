@@ -31,7 +31,7 @@
     "appId": "redmine-now",
     "category": "public.app-category.productivity",
     "files": ["**/*", "!**/npm-debug\\.log", "!etc"],
-    "copyright": "Copyright (c) 2016 emsk",
+    "copyright": "Copyright (c) 2016-2017 emsk",
     "mac": {
       "target": "dmg"
     },
