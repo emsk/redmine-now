@@ -153,7 +153,7 @@
         const box = document.createElement('div');
         box.id = boxId;
         box.className = 'issue';
-        box.innerText = `#${issue.id} ${issue.subject}`;
+        box.innerText = `#${issue.id} ${issue.subject} (${issue.author.name})`;
         box.addEventListener('click', () => {
           shell.openExternal(`${url}/issues/${issue.id}`);
         });
