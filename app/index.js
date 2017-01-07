@@ -144,25 +144,49 @@
       const url = document.getElementById('url').value;
 
       issues.forEach((issue) => {
-        const boxId = `issue-${issue.id}`;
-        const currentBox = document.getElementById(boxId);
-        if (currentBox) {
-          currentBox.parentNode.removeChild(currentBox);
-        }
-
-        const box = document.createElement('div');
-        box.id = boxId;
-        box.className = 'issue';
-        box.innerText = `#${issue.id} ${issue.subject} (${issue.author.name})`;
-        box.addEventListener('click', () => {
-          shell.openExternal(`${url}/issues/${issue.id}`);
-        });
-
+        const issueElementId = `issue-${issue.id}`;
+        this.removeIssueElement(issueElementId);
+        const issueElement = this.createIssueElement(issueElementId, issue, url);
         const column = document.getElementById(`column-status-${issue.status.id}`);
-        column.insertBefore(box, column.firstChild);
+        column.insertBefore(issueElement, column.firstChild);
       });
 
       return this;
+    }
+
+    removeIssueElement(issueElementId) {
+      const issueElement = document.getElementById(issueElementId);
+      if (issueElement) {
+        issueElement.parentNode.removeChild(issueElement);
+      }
+
+      return this;
+    }
+
+    createIssueElement(issueElementId, issue, url) {
+      const issueElement = document.createElement('div');
+      issueElement.id = issueElementId;
+      issueElement.className = 'issue';
+
+      const issueIdElement = document.createElement('div');
+      issueIdElement.innerText = `#${issue.id}`;
+      issueIdElement.className = 'issue-id';
+      issueElement.appendChild(issueIdElement);
+
+      const subjectElement = document.createElement('div');
+      subjectElement.innerText = issue.subject;
+      issueElement.appendChild(subjectElement);
+
+      const authorElement = document.createElement('div');
+      authorElement.innerText = issue.author.name;
+      authorElement.className = 'author';
+      issueElement.appendChild(authorElement);
+
+      issueElement.addEventListener('click', () => {
+        shell.openExternal(`${url}/issues/${issue.id}`);
+      });
+
+      return issueElement;
     }
 
     updateLastExecutionTime() {

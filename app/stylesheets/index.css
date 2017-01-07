@@ -129,3 +129,12 @@ button:hover {
 .issue:first-child {
   margin-top: 0;
 }
+
+.issue-id {
+  font-size: 0.9em;
+}
+
+.author {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
