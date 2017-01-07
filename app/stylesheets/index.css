@@ -134,7 +134,8 @@ button:hover {
   font-size: 0.9em;
 }
 
-.author {
+.author,
+.updated-on {
   font-size: 0.9em;
   opacity: 0.8;
 }

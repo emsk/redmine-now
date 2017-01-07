@@ -141,12 +141,14 @@
 
       if (issueCount === 0) return this;
 
+      const now = new Date();
+      const todayTime = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
       const url = document.getElementById('url').value;
 
       issues.forEach((issue) => {
         const issueElementId = `issue-${issue.id}`;
         this.removeIssueElement(issueElementId);
-        const issueElement = this.createIssueElement(issueElementId, issue, url);
+        const issueElement = this.createIssueElement(issueElementId, issue, todayTime, url);
         const column = document.getElementById(`column-status-${issue.status.id}`);
         column.insertBefore(issueElement, column.firstChild);
       });
@@ -163,7 +165,7 @@
       return this;
     }
 
-    createIssueElement(issueElementId, issue, url) {
+    createIssueElement(issueElementId, issue, todayTime, url) {
       const issueElement = document.createElement('div');
       issueElement.id = issueElementId;
       issueElement.className = 'issue';
@@ -182,11 +184,30 @@
       authorElement.className = 'author';
       issueElement.appendChild(authorElement);
 
+      const updatedOnElement = document.createElement('div');
+      updatedOnElement.innerText = this.formatDate(new Date(issue.updated_on), todayTime);
+      updatedOnElement.className = 'updated-on';
+      issueElement.appendChild(updatedOnElement);
+
       issueElement.addEventListener('click', () => {
         shell.openExternal(`${url}/issues/${issue.id}`);
       });
 
       return issueElement;
+    }
+
+    formatDate(date, todayTime) {
+      const year = date.getFullYear();
+      const month = `0${date.getMonth() + 1}`.slice(-2);
+      const day = `0${date.getDate()}`.slice(-2);
+      const hour = `0${date.getHours()}`.slice(-2);
+      const minute = `0${date.getMinutes()}`.slice(-2);
+      const dateTime = new Date(year, date.getMonth(), day).getTime();
+
+      if (todayTime === dateTime) {
+        return `${hour}:${minute}`;
+      }
+      return `${year}-${month}-${day} ${hour}:${minute}`;
     }
 
     updateLastExecutionTime() {
