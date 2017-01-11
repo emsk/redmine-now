@@ -8,9 +8,11 @@ Redmine Now is a desktop app to know what's happening now on your Redmine.
 
 ![Screenshot](examples/redmine-now.png?raw=true)
 
-## Downloads
+## Installation
 
 Installers for macOS and Windows can be found on the [releases](../../releases) page.
+
+For Windows, the app is installed to `C:\Users\[UserName]\AppData\Local\RedmineNow\app-[AppVersion]\Redmine Now.exe`.
 
 ## Development
 
