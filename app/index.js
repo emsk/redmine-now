@@ -3,8 +3,14 @@
 (() => {
   const electron = require('electron');
   const remote = electron.remote;
+  const app = remote.app;
+  const dialog = remote.dialog;
   const shell = remote.shell;
   const Menu = remote.Menu;
+
+  const appName = app.getName();
+  const appCopyright = 'Copyright (c) 2016-2017 emsk';
+  const appIconFilePath = `${__dirname}/images/redmine-now-icon.png`;
 
   class RedmineNow {
     constructor() {
@@ -12,21 +18,58 @@
     }
 
     initMenu() {
-      const appMenu = Menu.buildFromTemplate([
+      let appMenuItems = [
         {
           label: 'Edit',
           submenu: [
             { role: 'undo' },
             { role: 'redo' },
+            { type: 'separator' },
             { role: 'cut' },
             { role: 'copy' },
             { role: 'paste' },
-            { role: 'selectall' },
+            { role: 'selectall' }
+          ]
+        }
+      ];
+
+      if (process.platform === 'darwin') {
+        appMenuItems.unshift({
+          label: app.getName(),
+          submenu: [
+            { role: 'about' },
             { type: 'separator' },
             { role: 'quit' }
           ]
-        }
-      ]);
+        });
+      } else {
+        appMenuItems.unshift({
+          label: 'File',
+          submenu: [
+            { role: 'quit' }
+          ]
+        });
+
+        appMenuItems.push({
+          role: 'help',
+          submenu: [
+            {
+              label: `About ${appName}`,
+              click: () => {
+                dialog.showMessageBox({
+                  title: `About ${appName}`,
+                  message: `${appName} ${app.getVersion()}`,
+                  detail: appCopyright,
+                  icon: appIconFilePath,
+                  buttons: []
+                });
+              }
+            }
+          ]
+        });
+      }
+
+      const appMenu = Menu.buildFromTemplate(appMenuItems);
       Menu.setApplicationMenu(appMenu);
 
       return this;
