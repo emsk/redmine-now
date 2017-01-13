@@ -222,10 +222,13 @@
       subjectElement.innerText = issue.subject;
       issueElement.appendChild(subjectElement);
 
-      const authorElement = document.createElement('div');
-      authorElement.innerText = issue.author.name;
-      authorElement.className = 'author';
-      issueElement.appendChild(authorElement);
+      const assignedTo = issue.assigned_to;
+      if (assignedTo !== undefined) {
+        const assignedToElement = document.createElement('div');
+        assignedToElement.innerText = assignedTo.name;
+        assignedToElement.className = 'assigned-to';
+        issueElement.appendChild(assignedToElement);
+      }
 
       const updatedOnElement = document.createElement('div');
       updatedOnElement.innerText = this.formatDate(new Date(issue.updated_on), todayTime);
