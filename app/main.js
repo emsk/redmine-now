@@ -4,6 +4,8 @@
   const electron = require('electron');
   const app = electron.app;
   const BrowserWindow = electron.BrowserWindow;
+  const Config = require('electron-config');
+  const config = new Config();
   let win = null;
 
   app.on('window-all-closed', () => {
@@ -14,12 +16,18 @@
   app.commandLine.appendSwitch('disable-renderer-backgrounding');
 
   app.on('ready', () => {
-    win = new BrowserWindow({
+    let winOptions = {
       width: 850,
       height: 600
-    });
+    };
+    Object.assign(winOptions, config.get('winBounds'));
+    win = new BrowserWindow(winOptions);
 
     win.loadURL(`file://${__dirname}/index.html`);
+
+    win.on('close', () => {
+      config.set('winBounds', win.getBounds());
+    });
 
     win.on('closed', () => {
       win = null;

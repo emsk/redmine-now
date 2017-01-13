@@ -8,5 +8,6 @@
   "author": "emsk",
   "license": "MIT",
   "dependencies": {
+    "electron-config": "^0.2.1"
   }
 }

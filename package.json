@@ -17,6 +17,7 @@
     "release": "npm run prepare && npm run pack"
   },
   "dependencies": {
+    "electron-config": "^0.2.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
