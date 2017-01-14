@@ -1,10 +1,14 @@
-#![Redmine Now](resources/redmine-now-logo.png?raw=true)
+<p align="center"><img src="https://raw.githubusercontent.com/emsk/redmine-now/master/resources/redmine-now-logo.png" alt="Redmine Now"></p>
 
-[![Build Status](https://travis-ci.org/emsk/redmine-now.svg?branch=master)](https://travis-ci.org/emsk/redmine-now)
-[![Dependency Status](https://gemnasium.com/badges/github.com/emsk/redmine-now.svg)](https://gemnasium.com/github.com/emsk/redmine-now)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+<p align="center">A desktop app to know what's happening now on your Redmine</p>
 
-Redmine Now is a desktop app to know what's happening now on your Redmine.
+<p align="center">
+  <a href="https://travis-ci.org/emsk/redmine-now"><img src="https://travis-ci.org/emsk/redmine-now.svg" alt="Build Status"></a>
+  <a href="https://gemnasium.com/github.com/emsk/redmine-now"><img src="https://gemnasium.com/badges/github.com/emsk/redmine-now.svg" alt="Dependency Status"></a>
+  <a href="https://github.com/emsk/redmine-now/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
+</p>
+
+---
 
 ![Screenshot](examples/redmine-now.png?raw=true)
 
