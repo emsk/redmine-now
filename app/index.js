@@ -182,6 +182,7 @@
     handleResponseFetch(status, responseText) {
       if (status === 200) {
         this.show(JSON.parse(responseText).issues)
+          .showTotalIssue()
           .updateLastExecutionTime();
       }
 
@@ -279,6 +280,18 @@
         return `${hour}:${minute}`;
       }
       return `${year}-${month}-${day} ${hour}:${minute}`;
+    }
+
+    showTotalIssue() {
+      const issues = document.getElementsByClassName('issue');
+      const issueCount = issues.length;
+
+      document.getElementById('total-issue-count').innerText = issueCount;
+
+      const issueUnit = (issueCount === 0 || issueCount === 1) ? 'issue' : 'issues';
+      document.getElementById('total-issue-unit').innerText = issueUnit;
+
+      return this;
     }
 
     updateLastExecutionTime() {

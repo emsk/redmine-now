@@ -69,10 +69,6 @@ button:hover {
   width: 120px;
 }
 
-#update-interval-unit {
-  font-size: 0.8em;
-}
-
 .setting-redmine {
   width: 350px;
 }
@@ -86,6 +82,20 @@ button:hover {
   width: 60px;
 }
 
+#update-interval-unit,
+#total-issue {
+  font-size: 0.8em;
+}
+
+#total-issue {
+  margin-left: 5px;
+  padding-top: 10px;
+}
+
+#total-issue-count {
+  font-size: 1.2em;
+}
+
 .mask {
   background-color: #628db6;
   border: solid 1px #fff;
@@ -96,7 +106,7 @@ button:hover {
   display: flex;
   font-size: 0.9em;
   height: 25px;
-  margin-top: 115px;
+  margin-top: 140px;
 }
 
 .header-column {
@@ -112,7 +122,7 @@ button:hover {
   display: flex;
   flex: 1;
   flex-flow: column nowrap;
-  height: calc(100vh - 180px);
+  height: calc(100vh - 205px);
   overflow-y: scroll;
 }
 
