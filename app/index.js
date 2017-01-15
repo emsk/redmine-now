@@ -79,10 +79,6 @@
     }
 
     initEventListener() {
-      document.getElementById('fetch-button').addEventListener('click', () => {
-        this.fetch();
-      });
-
       document.getElementById('show-hide-button').addEventListener('click', () => {
         this.toggleSettings();
       });
