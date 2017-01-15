@@ -12,9 +12,12 @@
   const appCopyright = 'Copyright (c) 2016-2017 emsk';
   const appIconFilePath = `${__dirname}/images/redmine-now-icon.png`;
 
+  const defaultUpdateIntervalSec = 600;
+
   class RedmineNow {
     constructor() {
       this._issueStatuses = [];
+      this._timer = null;
     }
 
     initMenu() {
@@ -84,10 +87,19 @@
         this.toggleSettings();
       });
 
+      document.getElementById('update-interval').addEventListener('change', () => {
+        this.initFetch();
+      });
+
       remote.getCurrentWindow().on('close', () => {
         this.updateSettings();
       });
 
+      return this;
+    }
+
+    displayDefaultSettings() {
+      document.getElementById('default-update-interval').innerHTML = defaultUpdateIntervalSec;
       return this;
     }
 
@@ -130,6 +142,23 @@
       }
 
       return this;
+    }
+
+    initFetch() {
+      const timer = () => {
+        this.fetch();
+        clearInterval(this._timer);
+        this._timer = setInterval(timer, this.getUpdateIntervalMsec());
+      };
+
+      clearInterval(this._timer);
+      this._timer = setInterval(timer, this.getUpdateIntervalMsec());
+
+      return this;
+    }
+
+    getUpdateIntervalMsec() {
+      return 1000 * (document.getElementById('update-interval').value || defaultUpdateIntervalSec);
     }
 
     fetch() {
@@ -267,6 +296,7 @@
       document.getElementById('url').value = localStorage.getItem('url');
       document.getElementById('api-key').value = localStorage.getItem('apiKey');
       document.getElementById('project-id').value = localStorage.getItem('projectId');
+      document.getElementById('update-interval').value = localStorage.getItem('updateInterval');
 
       return this;
     }
@@ -275,6 +305,7 @@
       localStorage.setItem('url', document.getElementById('url').value);
       localStorage.setItem('apiKey', document.getElementById('api-key').value);
       localStorage.setItem('projectId', document.getElementById('project-id').value);
+      localStorage.setItem('updateInterval', document.getElementById('update-interval').value);
 
       return this;
     }
@@ -293,9 +324,11 @@
     const redmineNow = new RedmineNow();
     redmineNow.initMenu()
       .initEventListener()
+      .displayDefaultSettings()
       .displaySettings()
       .fetchIssueStatus()
-      .updateLastExecutionTime();
+      .updateLastExecutionTime()
+      .initFetch();
   });
 })();
 

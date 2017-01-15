@@ -63,10 +63,14 @@ button:hover {
 }
 
 #setting th {
-  font-size: 0.9em;
+  font-size: 0.8em;
   text-align: left;
   white-space: nowrap;
-  width: 115px;
+  width: 120px;
+}
+
+#update-interval-unit {
+  font-size: 0.8em;
 }
 
 .setting-redmine {
@@ -92,7 +96,7 @@ button:hover {
   display: flex;
   font-size: 0.9em;
   height: 25px;
-  margin-top: 90px;
+  margin-top: 115px;
 }
 
 .header-column {
@@ -108,7 +112,7 @@ button:hover {
   display: flex;
   flex: 1;
   flex-flow: column nowrap;
-  height: calc(100vh - 155px);
+  height: calc(100vh - 180px);
   overflow-y: scroll;
 }
 

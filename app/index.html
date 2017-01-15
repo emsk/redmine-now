@@ -24,6 +24,13 @@
           <th>Project ID</th>
           <td colspan="2" class="setting-number"><input type="number" id="project-id" min="1" pattern="^\d+$"></td>
         </tr>
+        <tr>
+          <th>Update interval</th>
+          <td colspan="2" class="setting-number">
+            <input type="number" id="update-interval" min="1" pattern="^\d+$">
+            <span id="update-interval-unit">sec (default: <span id="default-update-interval"></span>)</span>
+          </td>
+        </tr>
       </table>
 
       <div id="headers"></div>
