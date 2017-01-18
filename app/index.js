@@ -182,6 +182,7 @@
     handleResponseFetch(status, responseText) {
       if (status === 200) {
         this.show(JSON.parse(responseText).issues)
+          .sortByUpdatedOn()
           .showTotalIssue()
           .updateLastExecutionTime();
       }
@@ -194,7 +195,7 @@
       const params = [
         `updated_on=%3E%3D${lastExecutionTime}`,
         'status_id=*',
-        'sort=updated_on:desc'
+        'sort=updated_on:asc'
       ];
 
       const projectId = document.getElementById('project-id').value;
@@ -261,6 +262,18 @@
       updatedOnElement.className = 'updated-on';
       issueElement.appendChild(updatedOnElement);
 
+      const updatedOnRawElement = document.createElement('input');
+      updatedOnRawElement.type = 'hidden';
+      updatedOnRawElement.value = issue.updated_on;
+      updatedOnRawElement.className = 'updated-on-raw';
+      issueElement.appendChild(updatedOnRawElement);
+
+      const statusIdElement = document.createElement('input');
+      statusIdElement.type = 'hidden';
+      statusIdElement.value = issue.status.id;
+      statusIdElement.className = 'status-id';
+      issueElement.appendChild(statusIdElement);
+
       issueElement.addEventListener('click', () => {
         shell.openExternal(`${url}/issues/${issue.id}`);
       });
@@ -280,6 +293,24 @@
         return `${hour}:${minute}`;
       }
       return `${year}-${month}-${day} ${hour}:${minute}`;
+    }
+
+    sortByUpdatedOn() {
+      const issueElements = Array.prototype.slice.call(document.getElementsByClassName('issue'));
+      issueElements.sort((a, b) => {
+        const dateA = new Date(a.getElementsByClassName('updated-on-raw')[0].value);
+        const dateB = new Date(b.getElementsByClassName('updated-on-raw')[0].value);
+        return dateA - dateB;
+      });
+
+      issueElements.forEach((issueElement) => {
+        this.removeIssueElement(issueElement.id);
+        const statusId = issueElement.getElementsByClassName('status-id')[0].value;
+        const column = document.getElementById(`column-status-${statusId}`);
+        column.insertBefore(issueElement, column.firstChild);
+      });
+
+      return this;
     }
 
     showTotalIssue() {
