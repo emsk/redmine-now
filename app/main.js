@@ -18,7 +18,7 @@
   app.on('ready', () => {
     let winOptions = {
       width: 850,
-      height: 650
+      height: 675
     };
     Object.assign(winOptions, config.get('winBounds'));
     win = new BrowserWindow(winOptions);

@@ -106,7 +106,7 @@ button:hover {
   display: flex;
   font-size: 0.9em;
   height: 25px;
-  margin-top: 140px;
+  margin-top: 165px;
 }
 
 .header-column {
@@ -122,7 +122,7 @@ button:hover {
   display: flex;
   flex: 1;
   flex-flow: column nowrap;
-  height: calc(100vh - 205px);
+  height: calc(100vh - 230px);
   overflow-y: scroll;
 }
 

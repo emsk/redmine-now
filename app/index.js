@@ -16,6 +16,7 @@
 
   class RedmineNow {
     constructor() {
+      this._startupTime = null;
       this._issueStatuses = [];
       this._timer = null;
       this._issues = [];
@@ -88,6 +89,12 @@
         this.initFetch();
       });
 
+      document.getElementById('base-time').addEventListener('change', (event) => {
+        const select = event.target;
+        const baseTime = new Date(select.options[select.selectedIndex].text);
+        this.updateLastExecutionTime(baseTime);
+      });
+
       remote.getCurrentWindow().on('close', () => {
         this.updateSettings();
       });
@@ -97,6 +104,24 @@
 
     displayDefaultSettings() {
       document.getElementById('default-update-interval').innerHTML = defaultUpdateIntervalSec;
+
+      this._startupTime = new Date();
+
+      const select = document.getElementById('base-time');
+      const option = document.createElement('option');
+      option.value = -1;
+      option.innerText = this.formatDate(this._startupTime);
+      select.appendChild(option);
+
+      for (let i = 0; i <= 7; i++) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        const option = document.createElement('option');
+        option.value = i;
+        option.innerText = this.formatDate(new Date(date.getFullYear(), date.getMonth(), date.getDate()));
+        select.appendChild(option);
+      }
+
       return this;
     }
 
@@ -298,7 +323,7 @@
       return issueElement;
     }
 
-    formatDate(date, todayTime) {
+    formatDate(date, todayTime = null) {
       const year = date.getFullYear();
       const month = `0${date.getMonth() + 1}`.slice(-2);
       const day = `0${date.getDate()}`.slice(-2);
@@ -323,8 +348,8 @@
       return this;
     }
 
-    updateLastExecutionTime() {
-      const lastExecutionTime = (new Date()).toISOString().replace(/\.\d+Z$/, 'Z');
+    updateLastExecutionTime(date = new Date()) {
+      const lastExecutionTime = date.toISOString().replace(/\.\d+Z$/, 'Z');
       localStorage.setItem('lastExecutionTime', lastExecutionTime);
 
       return this;
@@ -349,7 +374,9 @@
     }
 
     toggleSettings() {
-      const elements = Array.prototype.slice.call(document.getElementsByTagName('input'));
+      const inputElements = Array.prototype.slice.call(document.getElementsByTagName('input'));
+      const selectElements = Array.prototype.slice.call(document.getElementsByTagName('select'));
+      const elements = inputElements.concat(selectElements);
       elements.forEach((element) => {
         element.classList.toggle('mask');
       });
@@ -365,7 +392,7 @@
       .displayDefaultSettings()
       .displaySettings()
       .fetchIssueStatus()
-      .updateLastExecutionTime()
+      .updateLastExecutionTime(this._startupTime)
       .initFetch();
   });
 })();
