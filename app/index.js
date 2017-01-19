@@ -18,6 +18,7 @@
     constructor() {
       this._issueStatuses = [];
       this._timer = null;
+      this._issues = [];
     }
 
     initMenu() {
@@ -181,8 +182,9 @@
 
     handleResponseFetch(status, responseText) {
       if (status === 200) {
-        this.show(JSON.parse(responseText).issues)
-          .sortByUpdatedOn()
+        this.keepIssues(JSON.parse(responseText).issues)
+          .sortIssuesByUpdatedOn()
+          .showIssues()
           .showTotalIssue()
           .updateLastExecutionTime();
       }
@@ -206,8 +208,35 @@
       return `?${params.join('&')}`;
     }
 
-    show(issues) {
-      const issueCount = issues.length;
+    keepIssues(issues) {
+      issues.forEach((issue) => {
+        this.removeIssue(issue.id);
+        this._issues.push(issue);
+      });
+
+      return this;
+    }
+
+    removeIssue(issueId) {
+      this._issues = this._issues.filter((issue) => {
+        return issue.id !== issueId;
+      });
+
+      return this;
+    }
+
+    sortIssuesByUpdatedOn() {
+      this._issues.sort((a, b) => {
+        const dateA = new Date(a.updated_on);
+        const dateB = new Date(b.updated_on);
+        return dateA - dateB;
+      });
+
+      return this;
+    }
+
+    showIssues() {
+      const issueCount = this._issues.length;
 
       if (issueCount === 0) return this;
 
@@ -215,7 +244,7 @@
       const todayTime = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
       const url = document.getElementById('url').value;
 
-      issues.forEach((issue) => {
+      this._issues.forEach((issue) => {
         const issueElementId = `issue-${issue.id}`;
         this.removeIssueElement(issueElementId);
         const issueElement = this.createIssueElement(issueElementId, issue, todayTime, url);
@@ -262,18 +291,6 @@
       updatedOnElement.className = 'updated-on';
       issueElement.appendChild(updatedOnElement);
 
-      const updatedOnRawElement = document.createElement('input');
-      updatedOnRawElement.type = 'hidden';
-      updatedOnRawElement.value = issue.updated_on;
-      updatedOnRawElement.className = 'updated-on-raw';
-      issueElement.appendChild(updatedOnRawElement);
-
-      const statusIdElement = document.createElement('input');
-      statusIdElement.type = 'hidden';
-      statusIdElement.value = issue.status.id;
-      statusIdElement.className = 'status-id';
-      issueElement.appendChild(statusIdElement);
-
       issueElement.addEventListener('click', () => {
         shell.openExternal(`${url}/issues/${issue.id}`);
       });
@@ -295,27 +312,8 @@
       return `${year}-${month}-${day} ${hour}:${minute}`;
     }
 
-    sortByUpdatedOn() {
-      const issueElements = Array.prototype.slice.call(document.getElementsByClassName('issue'));
-      issueElements.sort((a, b) => {
-        const dateA = new Date(a.getElementsByClassName('updated-on-raw')[0].value);
-        const dateB = new Date(b.getElementsByClassName('updated-on-raw')[0].value);
-        return dateA - dateB;
-      });
-
-      issueElements.forEach((issueElement) => {
-        this.removeIssueElement(issueElement.id);
-        const statusId = issueElement.getElementsByClassName('status-id')[0].value;
-        const column = document.getElementById(`column-status-${statusId}`);
-        column.insertBefore(issueElement, column.firstChild);
-      });
-
-      return this;
-    }
-
     showTotalIssue() {
-      const issues = document.getElementsByClassName('issue');
-      const issueCount = issues.length;
+      const issueCount = this._issues.length;
 
       document.getElementById('total-issue-count').innerText = issueCount;
 
