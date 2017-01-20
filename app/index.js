@@ -168,7 +168,7 @@
 
     initFetch() {
       const timer = () => {
-        this.fetch();
+        this.fetch(1);
         clearInterval(this._timer);
         this._timer = setInterval(timer, this.getUpdateIntervalMsec());
       };
@@ -183,7 +183,7 @@
       return 1000 * (document.getElementById('update-interval').value || defaultUpdateIntervalSec);
     }
 
-    fetch() {
+    fetch(page) {
       if (this._issueStatuses.length === 0) {
         this.fetchIssueStatus();
       }
@@ -192,37 +192,46 @@
 
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
-          this.handleResponseFetch(xhr.status, xhr.responseText);
+          this.handleResponseFetch(xhr.status, xhr.responseText, page);
         }
       };
 
       const url = document.getElementById('url').value;
       const apiKey = document.getElementById('api-key').value;
-      xhr.open('GET', `${url}/issues.json${this.getRequestParams()}`);
+      xhr.open('GET', `${url}/issues.json${this.getRequestParams(page)}`);
       xhr.setRequestHeader('X-Redmine-API-Key', apiKey);
       xhr.send();
 
       return this;
     }
 
-    handleResponseFetch(status, responseText) {
+    handleResponseFetch(status, responseText, page) {
       if (status === 200) {
-        this.keepIssues(JSON.parse(responseText).issues)
-          .sortIssuesByUpdatedOn()
-          .showIssues()
-          .showTotalIssue()
-          .updateLastExecutionTime();
+        const response = JSON.parse(responseText);
+
+        this.keepIssues(response.issues);
+
+        if (this.calcRemainingRequestCount(response, page) > 0) {
+          this.fetch(page + 1);
+        } else {
+          this.sortIssuesByUpdatedOn()
+            .showIssues()
+            .showTotalIssue()
+            .updateLastExecutionTime();
+        }
       }
 
       return this;
     }
 
-    getRequestParams() {
+    getRequestParams(page) {
       const lastExecutionTime = localStorage.getItem('lastExecutionTime');
       const params = [
         `updated_on=%3E%3D${lastExecutionTime}`,
         'status_id=*',
-        'sort=updated_on:asc'
+        'sort=updated_on:asc',
+        'limit=100',
+        `page=${page}`
       ];
 
       const projectId = document.getElementById('project-id').value;
@@ -231,6 +240,10 @@
       }
 
       return `?${params.join('&')}`;
+    }
+
+    calcRemainingRequestCount(response, page) {
+      return Math.floor(response.total_count / response.limit) + 1 - page;
     }
 
     keepIssues(issues) {
