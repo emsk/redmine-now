@@ -288,7 +288,7 @@
       this._issues.sort((a, b) => {
         const dateA = new Date(a.updated_on);
         const dateB = new Date(b.updated_on);
-        return dateA - dateB;
+        return dateA - dateB || a.id - b.id;
       });
 
       return this;
