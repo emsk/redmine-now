@@ -17,6 +17,7 @@
   class RedmineNow {
     constructor() {
       this._startupTime = null;
+      this._needsUpdateStatus = true;
       this._issueStatuses = [];
       this._timer = null;
       this._issues = [];
@@ -81,6 +82,14 @@
     }
 
     initEventListener() {
+      document.getElementById('url').addEventListener('change', () => {
+        this._needsUpdateStatus = true;
+      });
+
+      document.getElementById('api-key').addEventListener('change', () => {
+        this._needsUpdateStatus = true;
+      });
+
       document.getElementById('show-hide-button').addEventListener('click', () => {
         this.toggleSettings();
       });
@@ -89,10 +98,8 @@
         this.initFetch();
       });
 
-      document.getElementById('base-time').addEventListener('change', (event) => {
-        const select = event.target;
-        const baseTime = new Date(select.options[select.selectedIndex].text);
-        this.updateLastExecutionTime(baseTime);
+      document.getElementById('base-time').addEventListener('change', () => {
+        this.updateLastExecutionTimeWithBaseTime();
       });
 
       remote.getCurrentWindow().on('close', () => {
@@ -126,6 +133,10 @@
     }
 
     fetchIssueStatus() {
+      if (!this._needsUpdateStatus) {
+        return this;
+      }
+
       const xhr = new XMLHttpRequest();
 
       xhr.onreadystatechange = () => {
@@ -133,6 +144,8 @@
           this.handleResponseFetchIssueStatus(xhr.status, xhr.responseText);
         }
       };
+
+      this.updateLastExecutionTimeWithBaseTime();
 
       const url = document.getElementById('url').value;
       const apiKey = document.getElementById('api-key').value;
@@ -149,6 +162,8 @@
         const container = document.getElementById('container');
         this._issueStatuses = JSON.parse(responseText).issue_statuses;
 
+        this.clear();
+
         this._issueStatuses.forEach((issueStatus) => {
           const header = document.createElement('div');
           header.id = `header-column-status-${issueStatus.id}`;
@@ -161,9 +176,17 @@
           column.className = 'column';
           container.appendChild(column);
         });
+
+        this._needsUpdateStatus = false;
       }
 
       return this;
+    }
+
+    clear() {
+      this._issues = [];
+      document.getElementById('headers').innerHTML = '';
+      document.getElementById('container').innerHTML = '';
     }
 
     initFetch() {
@@ -184,9 +207,7 @@
     }
 
     fetch(page) {
-      if (this._issueStatuses.length === 0) {
-        this.fetchIssueStatus();
-      }
+      this.fetchIssueStatus();
 
       const xhr = new XMLHttpRequest();
 
@@ -366,6 +387,12 @@
       localStorage.setItem('lastExecutionTime', lastExecutionTime);
 
       return this;
+    }
+
+    updateLastExecutionTimeWithBaseTime() {
+      const select = document.getElementById('base-time');
+      const baseTime = new Date(select.options[select.selectedIndex].text);
+      this.updateLastExecutionTime(baseTime);
     }
 
     displaySettings() {
