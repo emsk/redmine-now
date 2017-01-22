@@ -5,39 +5,59 @@
   src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
 }
 
-::selection {
-  background-color: #afd7ff;
+:root {
+  --bg-color: #fff;
+  --text-color: #1f4e5f;
+  --border-color: #aacfd0;
+  --mask-color: #f4f7f7;
 }
 
 html {
-  -webkit-app-region: drag;
   height: 100%;
   width: 100%;
 }
 
+body,
+input,
+select,
+button,
+.issue {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
 body {
-  background-color: #628db6;
-  color: #fff;
   font-family: 'Montserrat-Regular';
   letter-spacing: 1px;
   margin: 0;
 }
 
-input {
-  -webkit-app-region: no-drag;
-  border: solid 1px #ccc;
-  border-radius: 3px;
+input,
+select,
+.issue {
+  border: 1px solid var(--border-color);
   font-size: 0.8em;
+}
+
+input {
+  border-radius: 3px;
   height: 20px;
   padding: 0 3px;
 }
 
+select {
+  height: 21px;
+  width: 133px;
+}
+
+input:focus,
+select:focus {
+  box-shadow: 0 0 0 1px var(--border-color);
+}
+
 button {
-  -webkit-app-region: no-drag;
-  background-color: #628db6;
-  border: 2px solid #fff;
+  border: 1px solid var(--border-color);
   border-radius: 3px;
-  color: #fff;
   cursor: pointer;
   font: inherit;
   font-size: 0.8em;
@@ -45,16 +65,18 @@ button {
   padding: 13px 13px;
 }
 
+button:hover {
+  background-color: var(--mask-color);
+}
+
+input:focus,
+select:focus,
 button:focus {
   outline: none;
 }
 
-button:hover {
-  background-color: #3e5b76;
-}
-
 #main {
-  padding: 20px;
+  padding: 15px 20px 20px 20px;
 }
 
 #setting {
@@ -97,9 +119,8 @@ button:hover {
 }
 
 .mask {
-  background-color: #628db6;
-  border: solid 1px #fff;
-  color: #628db6;
+  background-color: var(--mask-color);
+  color: var(--mask-color);
 }
 
 #headers {
@@ -115,6 +136,7 @@ button:hover {
 }
 
 #container {
+  border-radius: 3px;
   display: flex;
 }
 
@@ -122,21 +144,18 @@ button:hover {
   display: flex;
   flex: 1;
   flex-flow: column nowrap;
-  height: calc(100vh - 230px);
+  height: calc(100vh - 225px);
   overflow-y: scroll;
+  padding: 0 1px;
 }
 
 .issue {
-  background-color: #fff;
-  border: 1px solid #ccc;
   border-radius: 3px;
   box-sizing: border-box;
-  color: #3e5b76;
   cursor: pointer;
-  font-size: 0.8em;
-  line-height: 1.5em;
-  margin-top: 5px;
-  padding: 5px;
+  line-height: 1.4em;
+  margin-top: 2px;
+  padding: 8px;
   word-break: break-all;
 }
 
@@ -144,12 +163,14 @@ button:hover {
   margin-top: 0;
 }
 
-.issue-id {
-  font-size: 0.9em;
-}
-
+.issue-id,
 .assigned-to,
 .updated-on {
   font-size: 0.9em;
   opacity: 0.8;
+}
+
+.subject {
+  font-weight: bold;
+  margin-bottom: 0.9em;
 }

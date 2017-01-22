@@ -335,6 +335,7 @@
 
       const subjectElement = document.createElement('div');
       subjectElement.innerText = issue.subject;
+      subjectElement.className = 'subject';
       issueElement.appendChild(subjectElement);
 
       const assignedTo = issue.assigned_to;
