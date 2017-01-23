@@ -13,6 +13,7 @@
   const appIconFilePath = `${__dirname}/images/redmine-now-icon.png`;
 
   const defaultUpdateIntervalSec = 600;
+  const baseTimeDaysAgo = 14;
 
   class RedmineNow {
     constructor() {
@@ -120,7 +121,7 @@
       option.innerText = this.formatDate(this._startupTime);
       select.appendChild(option);
 
-      for (let i = 0; i <= 7; i++) {
+      for (let i = 0; i <= baseTimeDaysAgo; i++) {
         const date = new Date();
         date.setDate(date.getDate() - i);
         const option = document.createElement('option');
