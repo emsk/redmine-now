@@ -138,6 +138,10 @@
         return this;
       }
 
+      if (!this.validateSettings()) {
+        return this;
+      }
+
       const xhr = new XMLHttpRequest();
 
       xhr.onreadystatechange = () => {
@@ -209,6 +213,10 @@
 
     fetch(page) {
       this.fetchIssueStatus();
+
+      if (!this.validateSettings()) {
+        return this;
+      }
 
       const xhr = new XMLHttpRequest();
 
@@ -424,6 +432,17 @@
       });
 
       return this;
+    }
+
+    validateSettings() {
+      const url = document.getElementById('url').value;
+      const apiKey = document.getElementById('api-key').value;
+
+      if (url === '' || apiKey === '') {
+        return false;
+      }
+
+      return true;
     }
   }
 
