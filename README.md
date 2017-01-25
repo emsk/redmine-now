@@ -22,6 +22,10 @@ For Windows, the app is installed to `C:\Users\[UserName]\AppData\Local\RedmineN
 
 Built with [Electron](http://electron.atom.io).
 
+## Related
+
+* [Redmine Notifier](https://github.com/emsk/redmine-notifier) - Updated issues checker for Redmine
+
 ## License
 
 [MIT](LICENSE)
