@@ -80,18 +80,13 @@ button:focus {
 
 #setting {
   position: absolute;
-  width: 665px;
 }
 
 #setting th {
   font-size: 0.8em;
   text-align: left;
   white-space: nowrap;
-  width: 120px;
-}
-
-.setting-redmine {
-  width: 350px;
+  width: 140px;
 }
 
 .setting-redmine input {

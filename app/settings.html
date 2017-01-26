@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Settings</title>
+    <link rel="stylesheet" href="stylesheets/index.css">
+  </head>
+
+  <body>
+    <div id="main">
+      <table id="setting">
+        <tr>
+          <th>Redmine URL</th>
+          <td class="setting-redmine"><input type="text" id="url" required></td>
+        </tr>
+        <tr>
+          <th>API key</th>
+          <td class="setting-redmine"><input type="text" id="api-key" required></td>
+        </tr>
+        <tr>
+          <th>Project ID</th>
+          <td class="setting-number"><input type="number" id="project-id" min="1" pattern="^\d+$"></td>
+        </tr>
+        <tr>
+          <th>Update interval</th>
+          <td class="setting-number">
+            <input type="number" id="update-interval" min="1" pattern="^\d+$">
+            <span id="update-interval-unit">sec (default: <span id="default-update-interval"></span>)</span>
+          </td>
+        </tr>
+        <tr>
+          <th>Base time</th>
+          <td><select id="base-time"></select></td>
+        </tr>
+      </table>
+    </div>
+
+    <script src="settings.js"></script>
+  </body>
+</html>

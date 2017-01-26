@@ -4,6 +4,7 @@
   const electron = require('electron');
   const remote = electron.remote;
   const app = remote.app;
+  const BrowserWindow = remote.BrowserWindow;
   const dialog = remote.dialog;
   const shell = remote.shell;
   const Menu = remote.Menu;
@@ -13,10 +14,10 @@
   const appIconFilePath = `${__dirname}/images/redmine-now-icon.png`;
 
   const defaultUpdateIntervalSec = 600;
-  const baseTimeDaysAgo = 14;
 
   class RedmineNow {
     constructor() {
+      this._settings = {};
       this._startupTime = null;
       this._needsUpdateStatus = true;
       this._issueStatuses = [];
@@ -40,11 +41,21 @@
         }
       ];
 
+      const preferencesMenuItem = {
+        label: 'Preferences...',
+        accelerator: 'CmdOrCtrl+,',
+        click: () => {
+          this.openSettingsWindow();
+        }
+      };
+
       if (process.platform === 'darwin') {
         appMenuItems.unshift({
           label: app.getName(),
           submenu: [
             { role: 'about' },
+            { type: 'separator' },
+            preferencesMenuItem,
             { type: 'separator' },
             { role: 'quit' }
           ]
@@ -53,6 +64,8 @@
         appMenuItems.unshift({
           label: 'File',
           submenu: [
+            preferencesMenuItem,
+            { type: 'separator' },
             { role: 'quit' }
           ]
         });
@@ -83,24 +96,8 @@
     }
 
     initEventListener() {
-      document.getElementById('url').addEventListener('change', () => {
-        this._needsUpdateStatus = true;
-      });
-
-      document.getElementById('api-key').addEventListener('change', () => {
-        this._needsUpdateStatus = true;
-      });
-
       document.getElementById('show-hide-button').addEventListener('click', () => {
         this.toggleSettings();
-      });
-
-      document.getElementById('update-interval').addEventListener('change', () => {
-        this.initFetch();
-      });
-
-      document.getElementById('base-time').addEventListener('change', () => {
-        this.updateLastExecutionTimeWithBaseTime();
       });
 
       remote.getCurrentWindow().on('close', () => {
@@ -110,25 +107,45 @@
       return this;
     }
 
+    openSettingsWindow() {
+      let width = 540;
+      let height = 185;
+      if (process.platform !== 'darwin') {
+        width = 555;
+        height = 200;
+      }
+
+      const settingsWindow = new BrowserWindow({
+        width: width,
+        height: height,
+        resizable: false,
+        maximizable: false,
+        parent: remote.getCurrentWindow()
+      });
+
+      if (process.platform !== 'darwin') {
+        settingsWindow.setMenuBarVisibility(false);
+      }
+
+      settingsWindow.loadURL(`file://${__dirname}/settings.html`);
+
+      settingsWindow.on('closed', () => {
+        this._needsUpdateStatus = true;
+        this.readStoredSettings()
+          .displaySettings()
+          .initFetch();
+      });
+
+      settingsWindow.webContents.on('did-finish-load', () => {
+        settingsWindow.webContents.send('load-settings-window', this._startupTime);
+      });
+    }
+
     displayDefaultSettings() {
       document.getElementById('default-update-interval').innerHTML = defaultUpdateIntervalSec;
 
       this._startupTime = new Date();
-
-      const select = document.getElementById('base-time');
-      const option = document.createElement('option');
-      option.value = -1;
-      option.innerText = this.formatDate(this._startupTime);
-      select.appendChild(option);
-
-      for (let i = 0; i <= baseTimeDaysAgo; i++) {
-        const date = new Date();
-        date.setDate(date.getDate() - i);
-        const option = document.createElement('option');
-        option.value = i;
-        option.innerText = this.formatDate(new Date(date.getFullYear(), date.getMonth(), date.getDate()));
-        select.appendChild(option);
-      }
+      document.getElementById('base-time').value = this.formatDate(this._startupTime);
 
       return this;
     }
@@ -400,9 +417,23 @@
     }
 
     updateLastExecutionTimeWithBaseTime() {
-      const select = document.getElementById('base-time');
-      const baseTime = new Date(select.options[select.selectedIndex].text);
-      this.updateLastExecutionTime(baseTime);
+      if (this._settings.baseTime !== undefined) {
+        this.updateLastExecutionTime(new Date(this._settings.baseTime));
+      }
+
+      return this;
+    }
+
+    readStoredSettings() {
+      this._settings = {
+        url: localStorage.getItem('url'),
+        apiKey: localStorage.getItem('apiKey'),
+        projectId: localStorage.getItem('projectId'),
+        updateInterval: localStorage.getItem('updateInterval'),
+        baseTime: localStorage.getItem('baseTime')
+      };
+
+      return this;
     }
 
     displaySettings() {
@@ -411,14 +442,17 @@
       document.getElementById('project-id').value = localStorage.getItem('projectId');
       document.getElementById('update-interval').value = localStorage.getItem('updateInterval');
 
+      const baseTime = localStorage.getItem('baseTime');
+      if (baseTime !== null) {
+        document.getElementById('base-time').value = this.formatDate(new Date(baseTime));
+      }
+
       return this;
     }
 
     updateSettings() {
-      localStorage.setItem('url', document.getElementById('url').value);
-      localStorage.setItem('apiKey', document.getElementById('api-key').value);
-      localStorage.setItem('projectId', document.getElementById('project-id').value);
-      localStorage.setItem('updateInterval', document.getElementById('update-interval').value);
+      localStorage.removeItem('baseTime');
+      localStorage.removeItem('baseTimeValue');
 
       return this;
     }

@@ -10,27 +10,27 @@
       <table id="setting">
         <tr>
           <th>Redmine URL</th>
-          <td class="setting-redmine"><input type="text" id="url" required></td>
+          <td class="setting-redmine"><input type="text" id="url" required disabled></td>
           <td rowspan="2"><button id="show-hide-button" tabindex="-1">Show/Hide settings</button></td>
         </tr>
         <tr>
           <th>API key</th>
-          <td class="setting-redmine"><input type="text" id="api-key" required></td>
+          <td class="setting-redmine"><input type="text" id="api-key" required disabled></td>
         </tr>
         <tr>
           <th>Project ID</th>
-          <td colspan="2" class="setting-number"><input type="number" id="project-id" min="1" pattern="^\d+$"></td>
+          <td colspan="2" class="setting-number"><input type="number" id="project-id" min="1" pattern="^\d+$" disabled></td>
         </tr>
         <tr>
           <th>Update interval</th>
           <td colspan="2" class="setting-number">
-            <input type="number" id="update-interval" min="1" pattern="^\d+$">
+            <input type="number" id="update-interval" min="1" pattern="^\d+$" disabled>
             <span id="update-interval-unit">sec (default: <span id="default-update-interval"></span>)</span>
           </td>
         </tr>
         <tr>
           <th>Base time</th>
-          <td colspan="2"><select id="base-time"></select></td>
+          <td colspan="2"class="setting-redmine"><input type="text" id="base-time" required disabled></td>
         </tr>
         <tr>
           <td colspan="3" id="total-issue">Total: <span id="total-issue-count">0</span> <span id="total-issue-unit">issue</span></td>
