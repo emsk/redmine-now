@@ -9,6 +9,8 @@
   const shell = remote.shell;
   const Menu = remote.Menu;
 
+  const isMac = process.platform === 'darwin';
+
   const appName = app.getName();
   const appCopyright = 'Copyright (c) 2016-2017 emsk';
   const appIconFilePath = `${__dirname}/images/redmine-now-icon.png`;
@@ -49,7 +51,7 @@
         }
       };
 
-      if (process.platform === 'darwin') {
+      if (isMac) {
         appMenuItems.unshift({
           label: app.getName(),
           submenu: [
@@ -104,22 +106,15 @@
     }
 
     openSettingsWindow() {
-      let width = 540;
-      let height = 185;
-      if (process.platform !== 'darwin') {
-        width = 555;
-        height = 200;
-      }
-
       const settingsWindow = new BrowserWindow({
-        width: width,
-        height: height,
+        width: isMac ? 540 : 555,
+        height: isMac ? 185 : 200,
         resizable: false,
         maximizable: false,
         parent: remote.getCurrentWindow()
       });
 
-      if (process.platform !== 'darwin') {
+      if (!isMac) {
         settingsWindow.setMenuBarVisibility(false);
       }
 
