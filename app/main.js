@@ -17,6 +17,7 @@
 
   app.on('ready', () => {
     let winOptions = {
+      title: 'Redmine Now',
       width: 850,
       height: 670
     };

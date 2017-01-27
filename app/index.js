@@ -111,6 +111,7 @@
 
     openSettingsWindow() {
       const settingsWindow = new BrowserWindow({
+        title: 'Settings',
         width: isMac ? 540 : 555,
         height: isMac ? 185 : 200,
         resizable: false,
