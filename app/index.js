@@ -96,12 +96,8 @@
     }
 
     initEventListener() {
-      document.getElementById('show-hide-button').addEventListener('click', () => {
-        this.toggleSettings();
-      });
-
       remote.getCurrentWindow().on('close', () => {
-        this.updateSettings();
+        this.removeBaseTime();
       });
 
       return this;
@@ -132,7 +128,6 @@
       settingsWindow.on('closed', () => {
         this._needsUpdateStatus = true;
         this.readStoredSettings()
-          .displaySettings()
           .initFetch();
       });
 
@@ -141,12 +136,8 @@
       });
     }
 
-    displayDefaultSettings() {
-      document.getElementById('default-update-interval').innerHTML = defaultUpdateIntervalSec;
-
+    initStartupTime() {
       this._startupTime = new Date();
-      document.getElementById('base-time').value = this.formatDate(this._startupTime);
-
       return this;
     }
 
@@ -169,10 +160,8 @@
 
       this.updateLastExecutionTimeWithBaseTime();
 
-      const url = document.getElementById('url').value;
-      const apiKey = document.getElementById('api-key').value;
-      xhr.open('GET', `${url}/issue_statuses.json`);
-      xhr.setRequestHeader('X-Redmine-API-Key', apiKey);
+      xhr.open('GET', `${this._settings.url}/issue_statuses.json`);
+      xhr.setRequestHeader('X-Redmine-API-Key', this._settings.apiKey);
       xhr.send();
 
       return this;
@@ -225,7 +214,7 @@
     }
 
     getUpdateIntervalMsec() {
-      return 1000 * (document.getElementById('update-interval').value || defaultUpdateIntervalSec);
+      return 1000 * (this._settings.updateInterval || defaultUpdateIntervalSec);
     }
 
     fetch(page) {
@@ -243,10 +232,8 @@
         }
       };
 
-      const url = document.getElementById('url').value;
-      const apiKey = document.getElementById('api-key').value;
-      xhr.open('GET', `${url}/issues.json${this.getRequestParams(page)}`);
-      xhr.setRequestHeader('X-Redmine-API-Key', apiKey);
+      xhr.open('GET', `${this._settings.url}/issues.json${this.getRequestParams(page)}`);
+      xhr.setRequestHeader('X-Redmine-API-Key', this._settings.apiKey);
       xhr.send();
 
       return this;
@@ -281,8 +268,8 @@
         `page=${page}`
       ];
 
-      const projectId = document.getElementById('project-id').value;
-      if (projectId !== '') {
+      const projectId = this._settings.projectId;
+      if (projectId !== null && projectId !== '') {
         params.unshift(`project_id=${projectId}`);
       }
 
@@ -327,12 +314,11 @@
 
       const now = new Date();
       const todayTime = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
-      const url = document.getElementById('url').value;
 
       this._issues.forEach((issue) => {
         const issueElementId = `issue-${issue.id}`;
         this.removeIssueElement(issueElementId);
-        const issueElement = this.createIssueElement(issueElementId, issue, todayTime, url);
+        const issueElement = this.createIssueElement(issueElementId, issue, todayTime, this._settings.url);
         const column = document.getElementById(`column-status-${issue.status.id}`);
         column.insertBefore(issueElement, column.firstChild);
       });
@@ -417,7 +403,7 @@
     }
 
     updateLastExecutionTimeWithBaseTime() {
-      if (this._settings.baseTime !== undefined) {
+      if (this._settings.baseTime !== null) {
         this.updateLastExecutionTime(new Date(this._settings.baseTime));
       }
 
@@ -436,47 +422,22 @@
       return this;
     }
 
-    displaySettings() {
-      document.getElementById('url').value = localStorage.getItem('url');
-      document.getElementById('api-key').value = localStorage.getItem('apiKey');
-      document.getElementById('project-id').value = localStorage.getItem('projectId');
-      document.getElementById('update-interval').value = localStorage.getItem('updateInterval');
-
-      const baseTime = localStorage.getItem('baseTime');
-      if (baseTime !== null) {
-        document.getElementById('base-time').value = this.formatDate(new Date(baseTime));
-      }
-
-      return this;
-    }
-
-    updateSettings() {
-      localStorage.removeItem('baseTime');
-      localStorage.removeItem('baseTimeValue');
-
-      return this;
-    }
-
-    toggleSettings() {
-      const inputElements = Array.prototype.slice.call(document.getElementsByTagName('input'));
-      const selectElements = Array.prototype.slice.call(document.getElementsByTagName('select'));
-      const elements = inputElements.concat(selectElements);
-      elements.forEach((element) => {
-        element.classList.toggle('mask');
-      });
-
-      return this;
-    }
-
     validateSettings() {
-      const url = document.getElementById('url').value;
-      const apiKey = document.getElementById('api-key').value;
+      const url = this._settings.url;
+      const apiKey = this._settings.apiKey;
 
-      if (url === '' || apiKey === '') {
+      if (url === null || url === '' || apiKey === null || apiKey === '') {
         return false;
       }
 
       return true;
+    }
+
+    removeBaseTime() {
+      localStorage.removeItem('baseTime');
+      localStorage.removeItem('baseTimeValue');
+
+      return this;
     }
   }
 
@@ -484,10 +445,10 @@
     const redmineNow = new RedmineNow();
     redmineNow.initMenu()
       .initEventListener()
-      .displayDefaultSettings()
-      .displaySettings()
+      .initStartupTime()
+      .readStoredSettings()
       .fetchIssueStatus()
-      .updateLastExecutionTime(this._startupTime)
+      .updateLastExecutionTime(redmineNow._startupTime)
       .initFetch();
   });
 })();

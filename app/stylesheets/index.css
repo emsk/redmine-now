@@ -9,7 +9,6 @@
   --bg-color: #fff;
   --text-color: #1f4e5f;
   --border-color: #aacfd0;
-  --mask-color: #f4f7f7;
 }
 
 html {
@@ -64,10 +63,6 @@ button {
   padding: 13px 13px;
 }
 
-button:hover {
-  background-color: var(--mask-color);
-}
-
 input:focus,
 select:focus,
 button:focus {
@@ -105,23 +100,17 @@ button:focus {
 
 #total-issue {
   margin-left: 5px;
-  padding-top: 10px;
 }
 
 #total-issue-count {
   font-size: 1.2em;
 }
 
-.mask {
-  background-color: var(--mask-color);
-  color: var(--mask-color);
-}
-
 #headers {
   display: flex;
   font-size: 0.9em;
   height: 25px;
-  margin-top: 165px;
+  margin-top: 10px;
 }
 
 .header-column {
@@ -138,7 +127,7 @@ button:focus {
   display: flex;
   flex: 1;
   flex-flow: column nowrap;
-  height: calc(100vh - 225px);
+  height: calc(100vh - 90px);
   overflow-y: scroll;
   padding: 0 1px;
 }
