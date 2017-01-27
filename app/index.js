@@ -98,6 +98,10 @@
     }
 
     initEventListener() {
+      document.getElementById('open-settings-button').addEventListener('click', () => {
+        this.openSettingsWindow();
+      });
+
       remote.getCurrentWindow().on('close', () => {
         this.removeBaseTime();
       });
@@ -123,6 +127,7 @@
       settingsWindow.on('closed', () => {
         this._needsUpdateStatus = true;
         this.readStoredSettings()
+          .overlay()
           .initFetch();
       });
 
@@ -434,6 +439,20 @@
 
       return this;
     }
+
+    overlay() {
+      const url = this._settings.url;
+      const apiKey = this._settings.apiKey;
+      const overlayElement = document.getElementById('no-setting');
+
+      if (url === null || url === '' || apiKey === null || apiKey === '') {
+        overlayElement.classList.add('overlay');
+      } else {
+        overlayElement.classList.remove('overlay');
+      }
+
+      return this;
+    }
   }
 
   window.addEventListener('load', () => {
@@ -442,6 +461,7 @@
       .initEventListener()
       .initStartupTime()
       .readStoredSettings()
+      .overlay()
       .fetchIssueStatus()
       .updateLastExecutionTime(redmineNow._startupTime)
       .initFetch();

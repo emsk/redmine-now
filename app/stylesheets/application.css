@@ -9,6 +9,7 @@
   --bg-color: #fff;
   --text-color: #1f4e5f;
   --border-color: #aacfd0;
+  --hover-color: #f4f7f7;
 }
 
 html {
@@ -63,10 +64,28 @@ button {
   padding: 13px 13px;
 }
 
+button:hover {
+  background-color: var(--hover-color);
+}
+
 input:focus,
 select:focus,
 button:focus {
   outline: none;
+}
+
+#no-setting {
+  display: none;
+}
+
+#no-setting.overlay {
+  align-items: center;
+  background-color: var(--bg-color);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
 }
 
 #main {
