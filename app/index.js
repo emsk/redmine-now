@@ -119,9 +119,9 @@
         title: 'Settings',
         width: isMac ? 540 : 555,
         height: isMac ? 185 : 200,
+        show: false,
         resizable: false,
-        maximizable: false,
-        parent: remote.getCurrentWindow()
+        maximizable: false
       });
 
       if (!isMac) {
@@ -129,6 +129,13 @@
       }
 
       this._settingsWindow.loadURL(`file://${__dirname}/settings.html`);
+
+      this._settingsWindow.once('ready-to-show', () => {
+        if (isMac) {
+          this._settingsWindow.setParentWindow(remote.getCurrentWindow());
+        }
+        this._settingsWindow.show();
+      });
 
       this._settingsWindow.on('closed', () => {
         this._settingsWindow = null;

@@ -19,12 +19,17 @@
     let winOptions = {
       title: 'Redmine Now',
       width: 850,
-      height: 670
+      height: 670,
+      show: false
     };
     Object.assign(winOptions, config.get('winBounds'));
     win = new BrowserWindow(winOptions);
 
     win.loadURL(`file://${__dirname}/index.html`);
+
+    win.once('ready-to-show', () => {
+      win.show();
+    });
 
     win.on('close', () => {
       config.set('winBounds', win.getBounds());
