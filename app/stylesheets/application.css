@@ -60,7 +60,6 @@ button {
   cursor: pointer;
   font: inherit;
   font-size: 0.8em;
-  margin-left: 5px;
   padding: 13px 13px;
 }
 
@@ -93,7 +92,7 @@ button:focus {
 }
 
 #setting {
-  position: absolute;
+  width: 500px;
 }
 
 #setting th {
@@ -110,6 +109,21 @@ button:focus {
 .setting-number input {
   text-align: right;
   width: 60px;
+}
+
+#setting-footer {
+  margin-top: 20px;
+  text-align: center;
+  width: 500px;
+}
+
+#setting-footer button {
+  padding: 10px;
+  width: 100px;
+}
+
+#save-settings-button {
+  margin-right: 30px;
 }
 
 #update-interval-unit,

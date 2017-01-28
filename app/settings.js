@@ -2,8 +2,8 @@
 
 (() => {
   const electron = require('electron');
-  const remote = electron.remote;
   const ipcRenderer = electron.ipcRenderer;
+  const remote = electron.remote;
 
   const defaultUpdateIntervalSec = 600;
   const baseTimeDaysAgo = 14;
@@ -23,11 +23,14 @@
     }
 
     initEventListener() {
-      remote.getCurrentWindow().on('close', () => {
+      document.getElementById('save-settings-button').addEventListener('click', () => {
         this.updateSettings()
           .updateLastExecutionTimeWithBaseTime();
+        remote.getCurrentWindow().getParentWindow().webContents.send('save-settings');
+        remote.getCurrentWindow().close();
+      });
 
-        window.onbeforeunload = undefined;
+      document.getElementById('cancel-settings-button').addEventListener('click', () => {
         remote.getCurrentWindow().close();
       });
 
@@ -113,10 +116,5 @@
       return select.options[select.selectedIndex];
     }
   }
-
-  // Certainly save the settings
-  window.onbeforeunload = (e) => {
-    e.returnValue = false;
-  };
 })();
 

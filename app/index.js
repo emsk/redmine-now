@@ -2,6 +2,7 @@
 
 (() => {
   const electron = require('electron');
+  const ipcRenderer = electron.ipcRenderer;
   const remote = electron.remote;
   const app = remote.app;
   const BrowserWindow = remote.BrowserWindow;
@@ -99,6 +100,13 @@
     }
 
     initEventListener() {
+      ipcRenderer.on('save-settings', () => {
+        this._needsUpdateStatus = true;
+        this.readStoredSettings()
+          .overlay()
+          .initFetch();
+      });
+
       document.getElementById('open-settings-button').addEventListener('click', () => {
         this.openSettingsWindow();
       });
@@ -117,11 +125,12 @@
 
       this._settingsWindow = new BrowserWindow({
         title: 'Settings',
-        width: isMac ? 540 : 555,
-        height: isMac ? 185 : 200,
         show: false,
         resizable: false,
-        maximizable: false
+        maximizable: false,
+        width: isMac ? 540 : 555,
+        height: isMac ? 250 : 265,
+        parent: isMac ? null : remote.getCurrentWindow()
       });
 
       if (!isMac) {
@@ -139,10 +148,6 @@
 
       this._settingsWindow.on('closed', () => {
         this._settingsWindow = null;
-        this._needsUpdateStatus = true;
-        this.readStoredSettings()
-          .overlay()
-          .initFetch();
       });
 
       this._settingsWindow.webContents.on('did-finish-load', () => {
