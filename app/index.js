@@ -1,6 +1,7 @@
 'use strict';
 
 (() => {
+  const util = require('./util');
   const electron = require('electron');
   const ipcRenderer = electron.ipcRenderer;
   const remote = electron.remote;
@@ -380,7 +381,7 @@
       }
 
       const updatedOnElement = document.createElement('div');
-      updatedOnElement.innerText = this.formatDate(new Date(issue.updated_on), todayTime);
+      updatedOnElement.innerText = util.formatDate(new Date(issue.updated_on), todayTime);
       updatedOnElement.className = 'updated-on';
       issueElement.appendChild(updatedOnElement);
 
@@ -389,20 +390,6 @@
       });
 
       return issueElement;
-    }
-
-    formatDate(date, todayTime = null) {
-      const year = date.getFullYear();
-      const month = `0${date.getMonth() + 1}`.slice(-2);
-      const day = `0${date.getDate()}`.slice(-2);
-      const hour = `0${date.getHours()}`.slice(-2);
-      const minute = `0${date.getMinutes()}`.slice(-2);
-      const dateTime = new Date(year, date.getMonth(), day).getTime();
-
-      if (todayTime === dateTime) {
-        return `${hour}:${minute}`;
-      }
-      return `${year}-${month}-${day} ${hour}:${minute}`;
     }
 
     showTotalIssue() {
