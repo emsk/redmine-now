@@ -60,7 +60,7 @@ button {
   cursor: pointer;
   font: inherit;
   font-size: 0.8em;
-  padding: 13px 13px;
+  padding: 13px;
 }
 
 button:hover {
@@ -88,7 +88,7 @@ button:focus {
 }
 
 #main {
-  padding: 15px 20px 20px 20px;
+  padding: 15px 20px 20px;
 }
 
 #setting {
