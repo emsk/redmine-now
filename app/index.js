@@ -19,6 +19,7 @@
 
   class RedmineNow {
     constructor() {
+      this._settingsWindow = null;
       this._settings = {};
       this._startupTime = null;
       this._needsUpdateStatus = true;
@@ -110,7 +111,11 @@
     }
 
     openSettingsWindow() {
-      const settingsWindow = new BrowserWindow({
+      if (this._settingsWindow !== null) {
+        return this;
+      }
+
+      this._settingsWindow = new BrowserWindow({
         title: 'Settings',
         width: isMac ? 540 : 555,
         height: isMac ? 185 : 200,
@@ -120,21 +125,24 @@
       });
 
       if (!isMac) {
-        settingsWindow.setMenuBarVisibility(false);
+        this._settingsWindow.setMenuBarVisibility(false);
       }
 
-      settingsWindow.loadURL(`file://${__dirname}/settings.html`);
+      this._settingsWindow.loadURL(`file://${__dirname}/settings.html`);
 
-      settingsWindow.on('closed', () => {
+      this._settingsWindow.on('closed', () => {
+        this._settingsWindow = null;
         this._needsUpdateStatus = true;
         this.readStoredSettings()
           .overlay()
           .initFetch();
       });
 
-      settingsWindow.webContents.on('did-finish-load', () => {
-        settingsWindow.webContents.send('load-settings-window', this._startupTime);
+      this._settingsWindow.webContents.on('did-finish-load', () => {
+        this._settingsWindow.webContents.send('load-settings-window', this._startupTime);
       });
+
+      return this;
     }
 
     initStartupTime() {
