@@ -19,6 +19,8 @@
 
   const defaultUpdateIntervalSec = 600;
 
+  let isDarkMode = JSON.parse(localStorage.getItem('isDarkMode'));
+
   class RedmineNow {
     constructor() {
       this._settingsWindow = null;
@@ -54,6 +56,14 @@
         }
       };
 
+      const toggleDarkModeMenuItem = {
+        label: 'Toggle Dark Mode',
+        accelerator: 'CmdOrCtrl+Shift+D',
+        click: () => {
+          this.toggleDarkMode();
+        }
+      };
+
       if (isMac) {
         appMenuItems.unshift({
           label: app.getName(),
@@ -61,6 +71,8 @@
             { role: 'about' },
             { type: 'separator' },
             preferencesMenuItem,
+            { type: 'separator' },
+            toggleDarkModeMenuItem,
             { type: 'separator' },
             { role: 'quit' }
           ]
@@ -70,6 +82,8 @@
           label: 'File',
           submenu: [
             preferencesMenuItem,
+            { type: 'separator' },
+            toggleDarkModeMenuItem,
             { type: 'separator' },
             { role: 'quit' }
           ]
@@ -156,6 +170,15 @@
       });
 
       return this;
+    }
+
+    toggleDarkMode() {
+      isDarkMode = document.body.classList.toggle('dark');
+      localStorage.setItem('isDarkMode', isDarkMode);
+
+      if (this._settingsWindow !== null) {
+        this._settingsWindow.webContents.send('toggle-dark-mode', isDarkMode);
+      }
     }
 
     initStartupTime() {
@@ -462,6 +485,10 @@
       return this;
     }
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.toggle('dark', isDarkMode);
+  });
 
   window.addEventListener('load', () => {
     const redmineNow = new RedmineNow();

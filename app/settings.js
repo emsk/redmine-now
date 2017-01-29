@@ -24,6 +24,10 @@
     }
 
     initEventListener() {
+      ipcRenderer.on('toggle-dark-mode', (event, isDarkMode) => {
+        document.body.classList.toggle('dark', isDarkMode);
+      });
+
       document.getElementById('save-settings-button').addEventListener('click', () => {
         this.updateSettings()
           .updateLastExecutionTimeWithBaseTime();
@@ -103,5 +107,10 @@
       return select.options[select.selectedIndex];
     }
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const isDarkMode = JSON.parse(localStorage.getItem('isDarkMode'));
+    document.body.classList.toggle('dark', isDarkMode);
+  });
 })();
 
