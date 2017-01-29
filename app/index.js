@@ -143,6 +143,7 @@
         show: false,
         resizable: false,
         maximizable: false,
+        fullscreenable: false,
         width: isMac ? 540 : 555,
         height: isMac ? 240 : 265,
         parent: isMac ? null : remote.getCurrentWindow(),
