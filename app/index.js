@@ -144,8 +144,9 @@
         resizable: false,
         maximizable: false,
         width: isMac ? 540 : 555,
-        height: isMac ? 250 : 265,
-        parent: isMac ? null : remote.getCurrentWindow()
+        height: isMac ? 240 : 265,
+        parent: isMac ? null : remote.getCurrentWindow(),
+        titleBarStyle: isMac ? 'hidden' : 'default'
       });
 
       if (!isMac) {
@@ -229,7 +230,7 @@
 
           const column = document.createElement('div');
           column.id = `column-status-${issueStatus.id}`;
-          column.className = 'column';
+          column.className = isMac ? 'column' : 'column windows';
           container.appendChild(column);
         });
 
@@ -488,6 +489,8 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.toggle('dark', isDarkMode);
+
+    util.hideTitleBar();
   });
 
   window.addEventListener('load', () => {

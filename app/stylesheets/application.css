@@ -7,7 +7,9 @@
 
 :root {
   --bg-color: #fff;
+  --bg-title-color: #f4f7f7;
   --text-color: #1f4e5f;
+  --text-title-color: #0f2e3f;
   --border-color: #aacfd0;
   --hover-color: #f4f7f7;
 }
@@ -71,6 +73,20 @@ input:focus,
 select:focus,
 button:focus {
   outline: none;
+}
+
+#title-bar {
+  -webkit-app-region: drag;
+  background-color: var(--bg-title-color);
+  cursor: default;
+  font-size: 0.7em;
+  margin-bottom: -5px;
+  padding: 5px 0;
+  text-align: center;
+}
+
+#title-bar.windows {
+  display: none;
 }
 
 #no-setting {
@@ -161,9 +177,13 @@ button:focus {
   display: flex;
   flex: 1;
   flex-flow: column nowrap;
-  height: calc(100vh - 90px);
+  height: calc(100vh - 110px);
   overflow-y: scroll;
   padding: 0 1px;
+}
+
+.column.windows {
+  height: calc(100vh - 90px);
 }
 
 .issue {

@@ -111,6 +111,8 @@
   document.addEventListener('DOMContentLoaded', () => {
     const isDarkMode = JSON.parse(localStorage.getItem('isDarkMode'));
     document.body.classList.toggle('dark', isDarkMode);
+
+    util.hideTitleBar();
   });
 })();
 
