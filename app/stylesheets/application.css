@@ -10,6 +10,7 @@
   --bg-title-color: #f4f7f7;
   --text-color: #1f4e5f;
   --text-title-color: #0f2e3f;
+  --text-content-color: #1f4e5f;
   --border-color: #aacfd0;
   --hover-color: #f4f7f7;
 }
@@ -38,6 +39,7 @@ input,
 select,
 .issue {
   border: 1px solid var(--border-color);
+  color: var(--text-content-color);
   font-size: 0.8em;
 }
 
@@ -153,10 +155,12 @@ button:focus {
 }
 
 #total-issue-count {
+  color: var(--text-content-color);
   font-size: 1.2em;
 }
 
 #headers {
+  color: var(--text-content-color);
   display: flex;
   font-size: 0.9em;
   height: 25px;
