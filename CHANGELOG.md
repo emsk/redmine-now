@@ -12,3 +12,10 @@
 * Fix order of issues
 * Fix bug that more than 25 issues are not fetched at once
 * Update Electron to 1.4.13
+
+## 0.1.0 (2017-01-01)
+
+* When `Fetch` button is clicked, fetch and show issues
+* When `Show/Hide settings` button is clicked, show or hide settings
+* Add app menu
+* Add logo and icons
