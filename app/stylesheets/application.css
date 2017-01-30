@@ -50,6 +50,12 @@ input {
   padding: 0 3px;
 }
 
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 select {
   height: 21px;
 }
