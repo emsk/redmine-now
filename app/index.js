@@ -1,22 +1,16 @@
 'use strict';
 
 (() => {
+  const appMenu = require('./menu');
   const util = require('./util');
   const electron = require('electron');
   const ipcRenderer = electron.ipcRenderer;
   const remote = electron.remote;
-  const app = remote.app;
   const BrowserWindow = remote.BrowserWindow;
-  const dialog = remote.dialog;
   const shell = remote.shell;
   const Menu = remote.Menu;
 
   const isMac = process.platform === 'darwin';
-
-  const appName = app.getName();
-  const appWebsite = 'https://github.com/emsk/redmine-now';
-  const appCopyright = 'Copyright (c) 2016-2017 emsk';
-  const appIconFilePath = `${__dirname}/images/redmine-now-icon.png`;
 
   const defaultUpdateIntervalSec = 600;
 
@@ -34,114 +28,19 @@
     }
 
     initMenu() {
-      let appMenuItems = [
-        {
-          label: 'Edit',
-          submenu: [
-            { role: 'undo' },
-            { role: 'redo' },
-            { type: 'separator' },
-            { role: 'cut' },
-            { role: 'copy' },
-            { role: 'paste' },
-            { role: 'selectall' }
-          ]
-        },
-        {
-          role: 'window',
-          submenu: [
-            { role: 'minimize' },
-            { role: 'zoom' },
-            { type: 'separator' },
-            { role: 'front' },
-            { role: 'togglefullscreen' }
-          ]
-        }
-      ];
-
-      const preferencesMenuItem = {
-        label: 'Preferences...',
-        accelerator: 'CmdOrCtrl+,',
-        click: () => {
-          this.openSettingsWindow();
-        }
-      };
-
-      const toggleDarkModeMenuItem = {
-        label: 'Toggle Dark Mode',
-        accelerator: 'CmdOrCtrl+Shift+D',
-        click: () => {
-          this.toggleDarkMode();
-        }
-      };
-
-      const websiteMenuItem = {
-        label: `${appName} Website`,
-        click: () => {
-          shell.openExternal(appWebsite);
-        }
-      };
-
-      if (isMac) {
-        appMenuItems.unshift({
-          label: app.getName(),
-          submenu: [
-            { role: 'about' },
-            { type: 'separator' },
-            preferencesMenuItem,
-            { type: 'separator' },
-            toggleDarkModeMenuItem,
-            { type: 'separator' },
-            { role: 'quit' }
-          ]
-        });
-
-        appMenuItems.push({
-          role: 'help',
-          submenu: [
-            websiteMenuItem
-          ]
-        });
-      } else {
-        appMenuItems.unshift({
-          label: 'File',
-          submenu: [
-            preferencesMenuItem,
-            { type: 'separator' },
-            toggleDarkModeMenuItem,
-            { type: 'separator' },
-            { role: 'quit' }
-          ]
-        });
-
-        appMenuItems.push({
-          role: 'help',
-          submenu: [
-            websiteMenuItem,
-            { type: 'separator' },
-            {
-              label: `About ${appName}`,
-              click: () => {
-                dialog.showMessageBox({
-                  title: `About ${appName}`,
-                  message: `${appName} ${app.getVersion()}`,
-                  detail: appCopyright,
-                  icon: appIconFilePath,
-                  buttons: []
-                });
-              }
-            }
-          ]
-        });
-      }
-
-      const appMenu = Menu.buildFromTemplate(appMenuItems);
       Menu.setApplicationMenu(appMenu);
-
       return this;
     }
 
     initEventListener() {
+      ipcRenderer.on('toggle-dark-mode', () => {
+        this.toggleDarkMode();
+      });
+
+      ipcRenderer.on('open-settings-window', () => {
+        this.openSettingsWindow();
+      });
+
       ipcRenderer.on('save-settings', () => {
         this._needsUpdateStatus = true;
         this.readStoredSettings()
