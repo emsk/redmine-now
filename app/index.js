@@ -46,6 +46,16 @@
             { role: 'paste' },
             { role: 'selectall' }
           ]
+        },
+        {
+          role: 'window',
+          submenu: [
+            { role: 'minimize' },
+            { role: 'zoom' },
+            { type: 'separator' },
+            { role: 'front' },
+            { role: 'togglefullscreen' }
+          ]
         }
       ];
 
