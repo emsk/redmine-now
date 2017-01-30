@@ -227,6 +227,10 @@ button:focus {
   margin-top: 0;
 }
 
+.issue:hover {
+  background-color: var(--hover-color);
+}
+
 .issue-id,
 .assigned-to,
 .updated-on {
