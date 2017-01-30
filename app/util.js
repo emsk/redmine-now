@@ -3,9 +3,26 @@
 const isMac = process.platform === 'darwin';
 
 module.exports.hideTitleBar = () => {
-  if (!isMac) {
-    document.getElementById('title-bar').classList.add('windows');
+  if (isMac) {
+    return false;
   }
+
+  const titleBarElement = document.getElementById('title-bar');
+  if (titleBarElement !== null) {
+    titleBarElement.classList.add('windows');
+  }
+
+  const openSettingsButtonElement = document.getElementById('open-settings-button');
+  if (openSettingsButtonElement !== null) {
+    openSettingsButtonElement.classList.add('windows');
+  }
+
+  const mainElement = document.getElementById('main');
+  if (mainElement !== null) {
+    mainElement.classList.add('windows');
+  }
+
+  return true;
 };
 
 module.exports.formatDate = (date, todayTime = null) => {
