@@ -14,6 +14,7 @@
   const isMac = process.platform === 'darwin';
 
   const appName = app.getName();
+  const appWebsite = 'https://github.com/emsk/redmine-now';
   const appCopyright = 'Copyright (c) 2016-2017 emsk';
   const appIconFilePath = `${__dirname}/images/redmine-now-icon.png`;
 
@@ -64,6 +65,13 @@
         }
       };
 
+      const websiteMenuItem = {
+        label: `${appName} Website`,
+        click: () => {
+          shell.openExternal(appWebsite);
+        }
+      };
+
       if (isMac) {
         appMenuItems.unshift({
           label: app.getName(),
@@ -75,6 +83,13 @@
             toggleDarkModeMenuItem,
             { type: 'separator' },
             { role: 'quit' }
+          ]
+        });
+
+        appMenuItems.push({
+          role: 'help',
+          submenu: [
+            websiteMenuItem
           ]
         });
       } else {
@@ -92,6 +107,8 @@
         appMenuItems.push({
           role: 'help',
           submenu: [
+            websiteMenuItem,
+            { type: 'separator' },
             {
               label: `About ${appName}`,
               click: () => {
