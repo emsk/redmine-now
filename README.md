@@ -10,7 +10,17 @@
 
 ---
 
-![Screenshot](examples/redmine-now.png?raw=true)
+![Screenshot Main](examples/redmine-now.png?raw=true)
+
+![Screenshot Settings](examples/redmine-now-settings.png?raw=true)
+
+### Dark Mode
+
+You can toggle dark mode with <kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>D</kbd> / <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>D</kbd>.
+
+![Screenshot Dark Mode Main](examples/redmine-now-dark.png?raw=true)
+
+![Screenshot Dark Mode Settings](examples/redmine-now-dark-settings.png?raw=true)
 
 ## Installation
 

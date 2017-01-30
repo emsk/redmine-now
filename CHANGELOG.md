@@ -1,5 +1,16 @@
 # Change Log
 
+## 0.3.0 (2017-01-30)
+
+* Extract settings into child window
+* Add dark mode
+* Show overlay button when `Redmine URL` or `API key` is empty
+* Add `Window` and `Redmine Now Website` to app menu
+* Change hover background color of issue elements
+* Hide spin button in text fields
+* Customize title bar on macOS
+* Update Electron to 1.4.15
+
 ## 0.2.0 (2017-01-24)
 
 * Automatically update issue list 
