@@ -15,9 +15,6 @@
     "test": "./bin/test.sh",
     "release": "npm run clean && npm run setup && npm run pack"
   },
-  "dependencies": {
-    "electron-config": "^0.2.1"
-  },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
