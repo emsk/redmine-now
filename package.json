@@ -9,7 +9,7 @@
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "./bin/lint-js.sh",
     "lint:css": "./bin/lint-css.sh",
-    "pack": "npm run pack:mac && npm run pack:win",
+    "pack": "./bin/pack-all.sh",
     "pack:mac": "./bin/pack-mac.sh",
     "pack:win": "./bin/pack-win.sh",
     "test": "./bin/test.sh",
