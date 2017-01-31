@@ -4,6 +4,7 @@
   "repository": "emsk/redmine-now",
   "scripts": {
     "start": "electron ./app/main.js",
+    "clean": "./bin/clean.sh",
     "setup": "./bin/setup.sh",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "./bin/lint-js.sh",
@@ -15,7 +16,7 @@
     "pack:mac": "./bin/pack-mac.sh",
     "pack:win": "./bin/pack-win.sh",
     "test": "./bin/test.sh",
-    "release": "npm run setup && npm run pack"
+    "release": "npm run clean && npm run setup && npm run pack"
   },
   "dependencies": {
     "electron-config": "^0.2.1"
