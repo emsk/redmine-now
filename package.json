@@ -6,14 +6,14 @@
     "start": "electron ./app/main.js",
     "clean": "./bin/clean.sh",
     "postinstall": "install-app-deps",
-    "lint": "npm run lint:js && npm run lint:css",
+    "lint": "yarn run lint:js && yarn run lint:css",
     "lint:js": "./bin/lint-js.sh",
     "lint:css": "./bin/lint-css.sh",
     "pack": "./bin/pack-all.sh",
     "pack:mac": "./bin/pack-mac.sh",
     "pack:win": "./bin/pack-win.sh",
     "test": "./bin/test.sh",
-    "release": "npm run clean && npm install && npm run pack"
+    "release": "yarn run clean && yarn install && yarn run pack"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -29,7 +29,6 @@
   "build": {
     "appId": "redmine-now",
     "category": "public.app-category.productivity",
-    "files": ["**/*", "!**/npm-debug\\.log"],
     "copyright": "Copyright (c) 2016-2017 emsk",
     "mac": {
       "target": "dmg"

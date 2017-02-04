@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 node --version
 npm --version
-npm install
-npm test
+yarn --version
+yarn install
+yarn test
