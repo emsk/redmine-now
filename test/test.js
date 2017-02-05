@@ -25,8 +25,9 @@ describe('application launch', function() {
   it('opens a window', () => {
     return app.client.waitUntilWindowLoaded()
       .getWindowCount().should.eventually.equal(1)
-      .browserWindow.getBounds().should.eventually.have.property('width').equal(850)
-      .browserWindow.getBounds().should.eventually.have.property('height').equal(670)
+      .browserWindow.getBounds().should.eventually.have.property('width').and.be.above(0)
+      .browserWindow.getBounds().should.eventually.have.property('height').and.be.above(0)
+      .browserWindow.getMinimumSize().should.eventually.eql([300, 200])
       .browserWindow.isVisible().should.eventually.be.true
       .browserWindow.isResizable().should.eventually.be.true
       .browserWindow.isFocused().should.eventually.be.true
