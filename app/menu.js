@@ -1,6 +1,7 @@
 'use strict';
 
 const electron = require('electron');
+
 const remote = electron.remote;
 const app = remote.app;
 const dialog = remote.dialog;
@@ -14,7 +15,7 @@ const appWebsite = 'https://github.com/emsk/redmine-now';
 const appCopyright = 'Copyright (c) 2016-2017 emsk';
 const appIconFilePath = `${__dirname}/images/redmine-now-icon.png`;
 
-const sendAction = (action) => {
+const sendAction = action => {
   remote.getCurrentWindow().webContents.send(action);
 };
 
@@ -22,23 +23,23 @@ let appMenuItems = [
   {
     label: 'Edit',
     submenu: [
-      { role: 'undo' },
-      { role: 'redo' },
-      { type: 'separator' },
-      { role: 'cut' },
-      { role: 'copy' },
-      { role: 'paste' },
-      { role: 'selectall' }
+      {role: 'undo'},
+      {role: 'redo'},
+      {type: 'separator'},
+      {role: 'cut'},
+      {role: 'copy'},
+      {role: 'paste'},
+      {role: 'selectall'}
     ]
   },
   {
     role: 'window',
     submenu: [
-      { role: 'minimize' },
-      { role: 'zoom' },
-      { type: 'separator' },
-      { role: 'front' },
-      { role: 'togglefullscreen' }
+      {role: 'minimize'},
+      {role: 'zoom'},
+      {type: 'separator'},
+      {role: 'front'},
+      {role: 'togglefullscreen'}
     ]
   }
 ];
@@ -70,13 +71,13 @@ if (isMac) {
   appMenuItems.unshift({
     label: app.getName(),
     submenu: [
-      { role: 'about' },
-      { type: 'separator' },
+      {role: 'about'},
+      {type: 'separator'},
       preferencesMenuItem,
-      { type: 'separator' },
+      {type: 'separator'},
       toggleDarkModeMenuItem,
-      { type: 'separator' },
-      { role: 'quit' }
+      {type: 'separator'},
+      {role: 'quit'}
     ]
   });
 
@@ -91,10 +92,10 @@ if (isMac) {
     label: 'File',
     submenu: [
       preferencesMenuItem,
-      { type: 'separator' },
+      {type: 'separator'},
       toggleDarkModeMenuItem,
-      { type: 'separator' },
-      { role: 'quit' }
+      {type: 'separator'},
+      {role: 'quit'}
     ]
   });
 
@@ -102,7 +103,7 @@ if (isMac) {
     role: 'help',
     submenu: [
       websiteMenuItem,
-      { type: 'separator' },
+      {type: 'separator'},
       {
         label: `About ${appName}`,
         click: () => {

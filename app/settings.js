@@ -9,15 +9,6 @@
   const defaultUpdateIntervalSec = 600;
   const baseTimeDaysAgo = 14;
 
-  ipcRenderer.on('load-settings-window', (event, startupTime) => {
-    const appStartupTime = new Date(startupTime);
-
-    const setting = new Setting(appStartupTime);
-    setting.initEventListener()
-      .displayDefaultSettings()
-      .displaySettings();
-  });
-
   class Setting {
     constructor(startupTime) {
       this._startupTime = startupTime;
@@ -107,6 +98,15 @@
       return select.options[select.selectedIndex];
     }
   }
+
+  ipcRenderer.on('load-settings-window', (event, startupTime) => {
+    const appStartupTime = new Date(startupTime);
+
+    const setting = new Setting(appStartupTime);
+    setting.initEventListener()
+      .displayDefaultSettings()
+      .displaySettings();
+  });
 
   document.addEventListener('DOMContentLoaded', () => {
     const isDarkMode = JSON.parse(localStorage.getItem('isDarkMode'));

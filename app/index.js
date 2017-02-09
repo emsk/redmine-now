@@ -148,7 +148,7 @@
 
         this.clear();
 
-        this._issueStatuses.forEach((issueStatus) => {
+        this._issueStatuses.forEach(issueStatus => {
           const header = document.createElement('div');
           header.id = `header-column-status-${issueStatus.id}`;
           header.className = 'header-column';
@@ -254,7 +254,7 @@
     }
 
     keepIssues(issues) {
-      issues.forEach((issue) => {
+      issues.forEach(issue => {
         this.removeIssue(issue.id);
         this._issues.push(issue);
       });
@@ -263,7 +263,7 @@
     }
 
     removeIssue(issueId) {
-      this._issues = this._issues.filter((issue) => {
+      this._issues = this._issues.filter(issue => {
         return issue.id !== issueId;
       });
 
@@ -283,12 +283,14 @@
     showIssues() {
       const issueCount = this._issues.length;
 
-      if (issueCount === 0) return this;
+      if (issueCount === 0) {
+        return this;
+      }
 
       const now = new Date();
       const todayTime = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
 
-      this._issues.forEach((issue) => {
+      this._issues.forEach(issue => {
         const issueElementId = `issue-${issue.id}`;
         this.removeIssueElement(issueElementId);
         const issueElement = this.createIssueElement(issueElementId, issue, todayTime, this._settings.url);
