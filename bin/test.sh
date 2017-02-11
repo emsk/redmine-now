@@ -3,4 +3,4 @@ cd $(dirname $0)/..
 if [ ! -e './dist/mac/Redmine Now.app' ]; then
   $(yarn bin)/build --mac --x64
 fi
-$(yarn bin)/mocha
+$(yarn bin)/ava

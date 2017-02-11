@@ -1,54 +1,53 @@
 'use strict';
 
-describe('application launch', function () {
-  const Application = require('spectron').Application;
-  const chai = require('chai');
-  const chaiAsPromised = require('chai-as-promised');
-  const app = new Application({
+import test from 'ava';
+import {Application} from 'spectron';
+
+test.beforeEach(async t => {
+  t.context.app = new Application({
     path: `${__dirname}/../dist/mac/Redmine Now.app/Contents/MacOS/Redmine Now`
   });
 
-  chai.should();
-  chai.use(chaiAsPromised);
-  chaiAsPromised.transferPromiseness = app.transferPromiseness;
+  await t.context.app.start();
+});
 
-  beforeEach(() => {
-    return app.start();
-  });
+test.afterEach.always(async t => {
+  await t.context.app.stop();
+});
 
-  afterEach(() => {
-    if (app && app.isRunning()) {
-      return app.stop();
-    }
-  });
+test(async t => {
+  const app = t.context.app;
+  await app.client.waitUntilWindowLoaded();
 
-  it('opens a window', () => {
-    return app.client.waitUntilWindowLoaded()
-      .getWindowCount().should.eventually.equal(1)
-      .browserWindow.getBounds().should.eventually.have.property('width').and.be.above(0)
-      .browserWindow.getBounds().should.eventually.have.property('height').and.be.above(0)
-      .browserWindow.getMinimumSize().should.eventually.eql([300, 200])
-      .browserWindow.isVisible().should.eventually.be.true
-      .browserWindow.isResizable().should.eventually.be.true
-      .browserWindow.isFocused().should.eventually.be.true
-      .browserWindow.isMaximized().should.eventually.be.false
-      .browserWindow.isMinimized().should.eventually.be.false
-      .browserWindow.isFullScreen().should.eventually.be.false
-      .browserWindow.isMovable().should.eventually.be.true
-      .browserWindow.isMaximizable().should.eventually.be.true
-      .browserWindow.isMinimizable().should.eventually.be.true
-      .browserWindow.isFullScreenable().should.eventually.be.true
-      .browserWindow.isClosable().should.eventually.be.true
-      .browserWindow.isAlwaysOnTop().should.eventually.be.false
-      .browserWindow.isKiosk().should.eventually.be.false
-      .browserWindow.isDocumentEdited().should.eventually.be.false
-      .browserWindow.isMenuBarAutoHide().should.eventually.be.false
-      .browserWindow.isMenuBarVisible().should.eventually.be.true
-      .browserWindow.isVisibleOnAllWorkspaces().should.eventually.be.false
-      .browserWindow.isDevToolsOpened().should.eventually.be.false
-      .browserWindow.isDevToolsFocused().should.eventually.be.false
-      .getUrl().should.eventually.match(/^file:\/\/.+\/index.html$/)
-      .getTitle().should.eventually.equal('Redmine Now');
-  });
+  const client = app.client;
+  t.is(await client.getWindowCount(), 1);
+  t.regex(await client.getUrl(), /^file:\/\/.+\/index.html$/);
+  t.is(await client.getTitle(), 'Redmine Now');
+
+  const win = app.browserWindow;
+  const {width, height} = await win.getBounds();
+  t.true(width > 0);
+  t.true(height > 0);
+
+  t.deepEqual(await win.getMinimumSize(), [300, 200]);
+  t.true(await win.isVisible());
+  t.true(await win.isResizable());
+  t.true(await win.isFocused());
+  t.false(await win.isMaximized());
+  t.false(await win.isMinimized());
+  t.false(await win.isFullScreen());
+  t.true(await win.isMovable());
+  t.true(await win.isMaximizable());
+  t.true(await win.isMinimizable());
+  t.true(await win.isFullScreenable());
+  t.true(await win.isClosable());
+  t.false(await win.isAlwaysOnTop());
+  t.false(await win.isKiosk());
+  t.false(await win.isDocumentEdited());
+  t.false(await win.isMenuBarAutoHide());
+  t.true(await win.isMenuBarVisible());
+  t.false(await win.isVisibleOnAllWorkspaces());
+  t.false(await win.isDevToolsOpened());
+  t.false(await win.isDevToolsFocused());
 });
 
