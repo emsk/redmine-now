@@ -19,6 +19,12 @@
         document.body.classList.toggle('dark', isDarkMode);
       });
 
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          remote.getCurrentWindow().close();
+        }
+      });
+
       document.getElementById('save-settings-button').addEventListener('click', () => {
         this.updateSettings()
           .updateLastExecutionTimeWithBaseTime();
