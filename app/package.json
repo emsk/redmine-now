@@ -1,7 +1,7 @@
 {
   "name": "RedmineNow",
   "productName": "Redmine Now",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Redmine Now",
   "main": "main.js",
   "repository": "emsk/redmine-now",

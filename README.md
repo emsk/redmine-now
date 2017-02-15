@@ -27,8 +27,6 @@ You can toggle dark mode with <kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>D</kbd> / <kb
 
 Installers for macOS and Windows can be found on the [releases](../../releases) page.
 
-For Windows, the app is installed to `C:\Users\[UserName]\AppData\Local\RedmineNow\app-[AppVersion]\Redmine Now.exe`.
-
 ## Development
 
 Built with [Electron](http://electron.atom.io).

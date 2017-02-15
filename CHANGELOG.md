@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.4.0 (2017-02-15)
+
+* Change installer for Windows from Squirrel to NSIS
+* Change app ID
+* Assign cancel action to escape key on the settings window
+* Change scrollbar style on Windows
+
 ## 0.3.0 (2017-01-30)
 
 * Extract settings into child window
