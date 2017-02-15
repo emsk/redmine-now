@@ -25,7 +25,7 @@
     "xo": "~0.17.1"
   },
   "build": {
-    "appId": "redmine-now",
+    "appId": "com.emsk.redmine-now",
     "category": "public.app-category.productivity",
     "copyright": "Copyright (c) 2016-2017 emsk",
     "mac": {
