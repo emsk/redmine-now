@@ -18,7 +18,7 @@
   "devDependencies": {
     "ava": "~0.18.1",
     "electron": "1.6.2",
-    "electron-builder": "13.8.0",
+    "electron-builder": "15.3.0",
     "spectron": "~3.6.0",
     "stylelint": "~7.8.0",
     "stylelint-config-standard": "~16.0.0",
@@ -26,9 +26,9 @@
   },
   "build": {
     "appId": "com.emsk.redmine-now",
-    "category": "public.app-category.productivity",
     "copyright": "Copyright (c) 2016-2017 emsk",
     "mac": {
+      "category": "public.app-category.productivity",
       "target": "dmg"
     },
     "dmg": {
