@@ -19,7 +19,7 @@
   app.commandLine.appendSwitch('disable-renderer-backgrounding');
 
   app.on('ready', () => {
-    let winOptions = {
+    const winOptions = {
       title: 'Redmine Now',
       show: false,
       width: 850,

@@ -19,7 +19,7 @@ const sendAction = action => {
   remote.getCurrentWindow().webContents.send(action);
 };
 
-let appMenuItems = [
+const appMenuItems = [
   {
     label: 'Edit',
     submenu: [
