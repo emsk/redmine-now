@@ -5,7 +5,8 @@ import {Application} from 'spectron';
 
 test.beforeEach(async t => {
   t.context.app = new Application({
-    path: `${__dirname}/../dist/mac/Redmine Now.app/Contents/MacOS/Redmine Now`
+    path: `${__dirname}/../dist/mac/Redmine Now.app/Contents/MacOS/Redmine Now`,
+    startTimeout: 10000
   });
 
   await t.context.app.start();
