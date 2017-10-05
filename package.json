@@ -17,7 +17,7 @@
     "release": "yarn run clean && yarn install && yarn run pack"
   },
   "devDependencies": {
-    "ava": "~0.21.0",
+    "ava": "~0.22.0",
     "electron": "1.7.8",
     "electron-builder": "16.3.0",
     "spectron": "~3.7.2",
