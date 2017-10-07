@@ -85,8 +85,8 @@ button:focus {
 }
 
 #title-bar {
-  -webkit-app-region: drag;
   align-items: center;
+  -webkit-app-region: drag;
   background-color: var(--bg-title-color);
   cursor: default;
   display: flex;
