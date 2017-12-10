@@ -887,6 +887,13 @@ brace-expansion@^1.0.0:
     balanced-match "^0.4.1"
     concat-map "0.0.1"
 
+brace-expansion@^1.1.7:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.8.tgz#c07b211c7c952ec1f8efd51a77ef0d1d3990a292"
+  dependencies:
+    balanced-match "^1.0.0"
+    concat-map "0.0.1"
+
 braces@^1.8.2:
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/braces/-/braces-1.8.5.tgz#ba77962e12dff969d6b76711e914b737857bf6a7"
@@ -1505,6 +1512,13 @@ diff@^2.2.2:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/diff/-/diff-2.2.3.tgz#60eafd0d28ee906e4e8ff0a52c1229521033bf99"
 
+dir-glob@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/dir-glob/-/dir-glob-2.0.0.tgz#0b205d2b6aef98238ca286598a8204d29d0a0034"
+  dependencies:
+    arrify "^1.0.1"
+    path-type "^3.0.0"
+
 doctrine@1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-1.5.0.tgz#379dce730f6166f76cefa4e6707a159b02c5a6fa"
@@ -1519,9 +1533,43 @@ doctrine@^2.0.0:
     esutils "^2.0.2"
     isarray "^1.0.0"
 
+dom-serializer@0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/dom-serializer/-/dom-serializer-0.1.0.tgz#073c697546ce0780ce23be4a28e293e40bc30c82"
+  dependencies:
+    domelementtype "~1.1.1"
+    entities "~1.1.1"
+
+domelementtype@1, domelementtype@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/domelementtype/-/domelementtype-1.3.0.tgz#b17aed82e8ab59e52dd9c19b1756e0fc187204c2"
+
+domelementtype@~1.1.1:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/domelementtype/-/domelementtype-1.1.3.tgz#bd28773e2642881aec51544924299c5cd822185b"
+
+domhandler@^2.3.0:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/domhandler/-/domhandler-2.4.1.tgz#892e47000a99be55bbf3774ffea0561d8879c259"
+  dependencies:
+    domelementtype "1"
+
+domutils@^1.5.1:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/domutils/-/domutils-1.6.2.tgz#1958cc0b4c9426e9ed367fb1c8e854891b0fa3ff"
+  dependencies:
+    dom-serializer "0"
+    domelementtype "1"
+
 dot-prop@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-4.1.0.tgz#eb29eac57dfa31fda1edef50ea462ee3d38ff3ab"
+  dependencies:
+    is-obj "^1.0.0"
+
+dot-prop@^4.1.1:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-4.2.0.tgz#1f19e0c2e1aa0e32797c49799f2837ac6af69c57"
   dependencies:
     is-obj "^1.0.0"
 
@@ -1700,6 +1748,10 @@ enhance-visitors@^1.0.0:
   resolved "https://registry.yarnpkg.com/enhance-visitors/-/enhance-visitors-1.0.0.tgz#aa945d05da465672a1ebd38fee2ed3da8518e95a"
   dependencies:
     lodash "^4.13.1"
+
+entities@^1.1.1, entities@~1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
 env-paths@^1.0.0:
   version "1.0.0"
@@ -2176,10 +2228,6 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
-flatten@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
-
 fn-name@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/fn-name/-/fn-name-2.0.1.tgz#5214d7537a4d06a4a301c0cc262feb84188002e7"
@@ -2368,6 +2416,17 @@ glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1, glob@~7.1.1:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
+glob@^7.1.2:
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.2.tgz#c19c9df9a028702d678612384a6552404c636d15"
+  dependencies:
+    fs.realpath "^1.0.0"
+    inflight "^1.0.4"
+    inherits "2"
+    minimatch "^3.0.4"
+    once "^1.3.0"
+    path-is-absolute "^1.0.0"
+
 global-dirs@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/global-dirs/-/global-dirs-0.1.1.tgz#b319c0dd4607f353f3be9cca4c72fc148c49f445"
@@ -2389,7 +2448,7 @@ globby@^5.0.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-globby@^6.0.0, globby@^6.1.0:
+globby@^6.0.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/globby/-/globby-6.1.0.tgz#f5a6d70e8395e21c858fb0489d64df02424d506c"
   dependencies:
@@ -2398,6 +2457,17 @@ globby@^6.0.0, globby@^6.1.0:
     object-assign "^4.0.1"
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
+
+globby@^7.0.0:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/globby/-/globby-7.1.1.tgz#fb2ccff9401f8600945dfada97440cca972b8680"
+  dependencies:
+    array-union "^1.0.1"
+    dir-glob "^2.0.0"
+    glob "^7.1.2"
+    ignore "^3.3.5"
+    pify "^3.0.0"
+    slash "^1.0.0"
 
 globjoin@^0.1.4:
   version "0.1.4"
@@ -2543,6 +2613,17 @@ html-tags@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/html-tags/-/html-tags-2.0.0.tgz#10b30a386085f43cede353cc8fa7cb0deeea668b"
 
+htmlparser2@^3.9.2:
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-3.9.2.tgz#1bdf87acca0f3f9e53fa4fcceb0f4b4cbb00b338"
+  dependencies:
+    domelementtype "^1.3.0"
+    domhandler "^2.3.0"
+    domutils "^1.5.1"
+    entities "^1.1.1"
+    inherits "^2.0.1"
+    readable-stream "^2.0.2"
+
 http-signature@~1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/http-signature/-/http-signature-1.1.1.tgz#df72e267066cd0ac67fb76adf8e134a8fbcf91bf"
@@ -2597,6 +2678,10 @@ ignore@^3.2.6:
 ignore@^3.3.3:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.3.tgz#432352e57accd87ab3110e82d3fea0e47812156d"
+
+ignore@^3.3.5:
+  version "3.3.7"
+  resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
 
 import-lazy@^2.1.0:
   version "2.1.0"
@@ -3438,6 +3523,12 @@ minimatch@^3.0.0, minimatch@^3.0.2, minimatch@^3.0.3, minimatch@~3.0.2:
   dependencies:
     brace-expansion "^1.0.0"
 
+minimatch@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
+  dependencies:
+    brace-expansion "^1.1.7"
+
 minimist@0.0.8, minimist@~0.0.1:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.8.tgz#857fcabfc3397d2625b8228262e86aa7a011b05d"
@@ -3820,6 +3911,12 @@ path-type@^2.0.0:
   dependencies:
     pify "^2.0.0"
 
+path-type@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/path-type/-/path-type-3.0.0.tgz#cef31dc8e0a1a3bb0d105c0cd97cf3bf47f4e36f"
+  dependencies:
+    pify "^3.0.0"
+
 pend@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
@@ -3907,6 +4004,14 @@ pluralize@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-2.0.0.tgz#72b726aa6fac1edeee42256c7d8dc256b335677f"
 
+postcss-html@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/postcss-html/-/postcss-html-0.11.0.tgz#03a3ff3116f8a0fe0d46316ea21893d4db4b63af"
+  dependencies:
+    htmlparser2 "^3.9.2"
+    remark "^8.0.0"
+    unist-util-find-all-after "^1.0.1"
+
 postcss-less@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/postcss-less/-/postcss-less-1.1.0.tgz#bdcc76be64c4324d873fbc5cd9fa2e799e4305fa"
@@ -3942,11 +4047,11 @@ postcss-scss@^1.0.2:
   dependencies:
     postcss "^6.0.3"
 
-postcss-selector-parser@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-2.2.3.tgz#f9437788606c3c9acee16ffe8d8b16297f27bb90"
+postcss-selector-parser@^3.1.0:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-3.1.1.tgz#4f875f4afb0c96573d5cf4d74011aee250a7e865"
   dependencies:
-    flatten "^1.0.2"
+    dot-prop "^4.1.1"
     indexes-of "^1.0.1"
     uniq "^1.0.1"
 
@@ -4294,9 +4399,48 @@ remark-parse@^3.0.0:
     vfile-location "^2.0.0"
     xtend "^4.0.1"
 
+remark-parse@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/remark-parse/-/remark-parse-4.0.0.tgz#99f1f049afac80382366e2e0d0bd55429dd45d8b"
+  dependencies:
+    collapse-white-space "^1.0.2"
+    is-alphabetical "^1.0.0"
+    is-decimal "^1.0.0"
+    is-whitespace-character "^1.0.0"
+    is-word-character "^1.0.0"
+    markdown-escapes "^1.0.0"
+    parse-entities "^1.0.2"
+    repeat-string "^1.5.4"
+    state-toggle "^1.0.0"
+    trim "0.0.1"
+    trim-trailing-lines "^1.0.0"
+    unherit "^1.0.4"
+    unist-util-remove-position "^1.0.0"
+    vfile-location "^2.0.0"
+    xtend "^4.0.1"
+
 remark-stringify@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/remark-stringify/-/remark-stringify-3.0.1.tgz#79242bebe0a752081b5809516fa0c06edec069cf"
+  dependencies:
+    ccount "^1.0.0"
+    is-alphanumeric "^1.0.0"
+    is-decimal "^1.0.0"
+    is-whitespace-character "^1.0.0"
+    longest-streak "^2.0.1"
+    markdown-escapes "^1.0.0"
+    markdown-table "^1.1.0"
+    mdast-util-compact "^1.0.0"
+    parse-entities "^1.0.2"
+    repeat-string "^1.5.4"
+    state-toggle "^1.0.0"
+    stringify-entities "^1.0.1"
+    unherit "^1.0.4"
+    xtend "^4.0.1"
+
+remark-stringify@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/remark-stringify/-/remark-stringify-4.0.0.tgz#4431884c0418f112da44991b4e356cfe37facd87"
   dependencies:
     ccount "^1.0.0"
     is-alphanumeric "^1.0.0"
@@ -4319,6 +4463,14 @@ remark@^7.0.1:
   dependencies:
     remark-parse "^3.0.0"
     remark-stringify "^3.0.0"
+    unified "^6.0.0"
+
+remark@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/remark/-/remark-8.0.0.tgz#287b6df2fe1190e263c1d15e486d3fa835594d6d"
+  dependencies:
+    remark-parse "^4.0.0"
+    remark-stringify "^4.0.0"
     unified "^6.0.0"
 
 repeat-element@^1.1.2:
@@ -4863,9 +5015,9 @@ stylelint-order@~0.7.0:
     postcss "^6.0.11"
     postcss-sorting "^3.0.2"
 
-stylelint@~8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-8.2.0.tgz#6a15044553fb5c3143b16d62013a370314495b0d"
+stylelint@~8.3.1:
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-8.3.1.tgz#424c822f32c88e85025b55d72c7b98355e3fa6de"
   dependencies:
     autoprefixer "^7.1.2"
     balanced-match "^1.0.0"
@@ -4875,7 +5027,7 @@ stylelint@~8.2.0:
     execall "^1.0.0"
     file-entry-cache "^2.0.0"
     get-stdin "^5.0.1"
-    globby "^6.1.0"
+    globby "^7.0.0"
     globjoin "^0.1.4"
     html-tags "^2.0.0"
     ignore "^3.3.3"
@@ -4889,13 +5041,14 @@ stylelint@~8.2.0:
     normalize-selector "^0.2.0"
     pify "^3.0.0"
     postcss "^6.0.6"
+    postcss-html "^0.11.0"
     postcss-less "^1.1.0"
     postcss-media-query-parser "^0.2.3"
     postcss-reporter "^5.0.0"
     postcss-resolve-nested-selector "^0.1.1"
     postcss-safe-parser "^3.0.1"
     postcss-scss "^1.0.2"
-    postcss-selector-parser "^2.2.3"
+    postcss-selector-parser "^3.1.0"
     postcss-value-parser "^3.3.0"
     resolve-from "^4.0.0"
     specificity "^0.3.1"
@@ -5315,6 +5468,16 @@ unique-temp-dir@^1.0.0:
     mkdirp "^0.5.1"
     os-tmpdir "^1.0.1"
     uid2 "0.0.3"
+
+unist-util-find-all-after@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/unist-util-find-all-after/-/unist-util-find-all-after-1.0.1.tgz#4e5512abfef7e0616781aecf7b1ed751c00af908"
+  dependencies:
+    unist-util-is "^2.0.0"
+
+unist-util-is@^2.0.0:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/unist-util-is/-/unist-util-is-2.1.1.tgz#0c312629e3f960c66e931e812d3d80e77010947b"
 
 unist-util-modify-children@^1.0.0:
   version "1.1.1"
