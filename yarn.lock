@@ -74,34 +74,31 @@
   dependencies:
     arrify "^1.0.1"
 
-"@textlint/ast-node-types@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-2.0.0.tgz#b927557ecab55fbb8360140b7b6f1de0c160583f"
+"@textlint/ast-node-types@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-3.0.0.tgz#bdf67d85adad6c2caaada0e5cc953b7f9016376b"
 
-"@textlint/feature-flag@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@textlint/feature-flag/-/feature-flag-2.0.0.tgz#817cd022291f3a8e2cd0580fb9799a9714f3c530"
+"@textlint/feature-flag@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@textlint/feature-flag/-/feature-flag-3.0.0.tgz#1f28f67de58f8e2287f8a2bd1812f1891a8b0ed1"
   dependencies:
     map-like "^1.1.2"
 
-"@textlint/kernel@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@textlint/kernel/-/kernel-1.0.3.tgz#b3c9ff2977a40b357986775fe3afa79aa114a766"
+"@textlint/kernel@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@textlint/kernel/-/kernel-2.0.0.tgz#6d29dbe5b1c758f823eb9cce351b4973eb83d265"
   dependencies:
-    "@textlint/ast-node-types" "^2.0.0"
-    "@textlint/feature-flag" "^2.0.0"
-    "@types/bluebird" "^3.5.11"
-    bluebird "^3.5.0"
-    carrack "^0.5.0"
+    "@textlint/ast-node-types" "^3.0.0"
+    "@textlint/feature-flag" "^3.0.0"
+    "@types/bluebird" "^3.5.18"
+    bluebird "^3.5.1"
     debug "^2.6.6"
     deep-equal "^1.0.1"
-    is-my-json-valid "^2.16.0"
-    map-like "^1.1.2"
     object-assign "^4.1.1"
     structured-source "^3.0.2"
-    txt-ast-traverse "^1.2.1"
+    txt-ast-traverse "^2.0.0"
 
-"@types/bluebird@^3.5.11":
+"@types/bluebird@^3.5.18":
   version "3.5.18"
   resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.18.tgz#6a60435d4663e290f3709898a4f75014f279c4d6"
 
@@ -834,9 +831,13 @@ bluebird@^3.0.0, bluebird@^3.0.5:
   version "3.4.7"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.4.7.tgz#f72d760be09b7f76d08ed8fae98b289a8d05fab3"
 
-bluebird@^3.0.1, bluebird@^3.4.7, bluebird@^3.5.0:
+bluebird@^3.4.7, bluebird@^3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c"
+
+bluebird@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
 
 boom@2.x.x:
   version "2.10.1"
@@ -998,13 +999,6 @@ caniuse-lite@^1.0.30000697, caniuse-lite@^1.0.30000704:
 capture-stack-trace@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/capture-stack-trace/-/capture-stack-trace-1.0.0.tgz#4a6fa07399c26bba47f0b2496b4d0fb408c5550d"
-
-carrack@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/carrack/-/carrack-0.5.0.tgz#d8ce373a5d89d55dc22dc10213b74e219b9ecee9"
-  dependencies:
-    bluebird "^3.0.1"
-    throat "^2.0.2"
 
 caseless@~0.11.0:
   version "0.11.0"
@@ -2972,15 +2966,6 @@ is-my-json-valid@^2.10.0, is-my-json-valid@^2.12.4:
     jsonpointer "^4.0.0"
     xtend "^4.0.0"
 
-is-my-json-valid@^2.16.0:
-  version "2.16.1"
-  resolved "https://registry.yarnpkg.com/is-my-json-valid/-/is-my-json-valid-2.16.1.tgz#5a846777e2c2620d1e69104e5d3a03b1f6088f11"
-  dependencies:
-    generate-function "^2.0.0"
-    generate-object-property "^1.1.0"
-    jsonpointer "^4.0.0"
-    xtend "^4.0.0"
-
 is-npm@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-npm/-/is-npm-1.0.0.tgz#f2fb63a65e4905b406c86072765a1a4dc793b9f4"
@@ -3435,13 +3420,13 @@ make-dir@^1.0.0:
   dependencies:
     pify "^2.3.0"
 
-map-like@^1.0.1:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/map-like/-/map-like-1.0.3.tgz#1bda42b0510116730c878366de9e7ef8cc375131"
-
 map-like@^1.1.2:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/map-like/-/map-like-1.1.3.tgz#6faaca5339e0cc6567a3a55dd281fd871a39e5da"
+
+map-like@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/map-like/-/map-like-2.0.0.tgz#94496d49ad333c0dc3234b27adbbd1e8535953b4"
 
 map-obj@^1.0.0, map-obj@^1.0.1:
   version "1.0.1"
@@ -3459,11 +3444,11 @@ markdown-table@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/markdown-table/-/markdown-table-1.1.1.tgz#4b3dd3a133d1518b8ef0dbc709bf2a1b4824bc8c"
 
-markdown-to-ast@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/markdown-to-ast/-/markdown-to-ast-5.0.0.tgz#c5848dd5ddc69f81499eabafb3a420b6ed4af142"
+markdown-to-ast@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/markdown-to-ast/-/markdown-to-ast-6.0.0.tgz#dff3d970c07c95b162ac337b0e5aede93e1d6f0f"
   dependencies:
-    "@textlint/ast-node-types" "^2.0.0"
+    "@textlint/ast-node-types" "^3.0.0"
     debug "^2.1.3"
     remark "^7.0.1"
     structured-source "^3.0.2"
@@ -3979,10 +3964,6 @@ path-key@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
 
-path-parse@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.5.tgz#3c1adf871ea9cd6c9431b6ea2bd74a0ff055c4c1"
-
 path-to-glob-pattern@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/path-to-glob-pattern/-/path-to-glob-pattern-1.0.2.tgz#473e6a3a292a9d13fbae3edccee72d3baba8c619"
@@ -4298,9 +4279,9 @@ randomatic@^1.1.3:
     is-number "^2.0.2"
     kind-of "^3.0.2"
 
-rc-config-loader@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/rc-config-loader/-/rc-config-loader-2.0.0.tgz#20b56f87463f6b5cd97fc2da1f8e96c55321862d"
+rc-config-loader@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/rc-config-loader/-/rc-config-loader-2.0.1.tgz#8c8452f59bdd10d448a67762dccf7c1b247db860"
   dependencies:
     debug "^2.2.0"
     js-yaml "^3.6.1"
@@ -4308,7 +4289,7 @@ rc-config-loader@^2.0.0:
     object-assign "^4.1.0"
     object-keys "^1.0.9"
     path-exists "^2.1.0"
-    require-uncached "^1.0.3"
+    require-from-string "^2.0.1"
 
 rc@^1.0.1, rc@^1.1.6, rc@^1.1.7, rc@~1.1.6:
   version "1.1.7"
@@ -4721,7 +4702,7 @@ require-precompiled@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/require-precompiled/-/require-precompiled-0.1.0.tgz#5a1b52eb70ebed43eb982e974c85ab59571e56fa"
 
-require-uncached@^1.0.2, require-uncached@^1.0.3:
+require-uncached@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/require-uncached/-/require-uncached-1.0.3.tgz#4e0d56d6c9662fd31e43011c4b95aa49955421d3"
   dependencies:
@@ -4763,12 +4744,6 @@ resolve-url@~0.2.1:
 resolve@^1.1.6:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.2.0.tgz#9589c3f2f6149d1417a40becc1663db6ec6bc26c"
-
-resolve@^1.4.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.5.0.tgz#1f09acce796c9a762579f31b2c1cc4c3cddf9f36"
-  dependencies:
-    path-parse "^1.0.5"
 
 restore-cursor@^1.0.1:
   version "1.0.1"
@@ -5331,9 +5306,23 @@ text-table@^0.2.0, text-table@~0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
 
-textlint-formatter@^1.7.3:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/textlint-formatter/-/textlint-formatter-1.8.0.tgz#3254e9bd7d4c8cf031b74778bf21bc086faff3eb"
+textlint-fixer-formatter@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/textlint-fixer-formatter/-/textlint-fixer-formatter-2.0.0.tgz#708fd72f0d1acfe99bb5250d19975214d65369d9"
+  dependencies:
+    "@textlint/kernel" "^2.0.0"
+    chalk "^1.1.3"
+    debug "^2.1.0"
+    diff "^2.2.2"
+    interop-require "^1.0.0"
+    is-file "^1.0.0"
+    string-width "^1.0.1"
+    text-table "^0.2.0"
+    try-resolve "^1.0.1"
+
+textlint-formatter@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/textlint-formatter/-/textlint-formatter-2.0.0.tgz#6c36fadf814851fc77845c34a9ddadc2332c6bde"
   dependencies:
     "@azu/format-text" "^1.0.1"
     "@azu/style-format" "^1.0.0"
@@ -5350,17 +5339,17 @@ textlint-formatter@^1.7.3:
     try-resolve "^1.0.1"
     xml-escape "^1.0.0"
 
-textlint-plugin-markdown@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/textlint-plugin-markdown/-/textlint-plugin-markdown-3.0.3.tgz#37962181ca42e83f71d982ecdf22c789a18e2bde"
+textlint-plugin-markdown@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/textlint-plugin-markdown/-/textlint-plugin-markdown-4.0.0.tgz#4e9dc0e69448faf2beb068622b4183d28b2471b6"
   dependencies:
-    markdown-to-ast "^5.0.0"
+    markdown-to-ast "^6.0.0"
 
-textlint-plugin-text@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/textlint-plugin-text/-/textlint-plugin-text-2.0.3.tgz#a66dfc277dce20de533979add04a6820a9855010"
+textlint-plugin-text@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/textlint-plugin-text/-/textlint-plugin-text-3.0.0.tgz#80284ef9161aa24f9067c03caa189b7e45c93683"
   dependencies:
-    txt-to-ast "^2.0.0"
+    txt-to-ast "^3.0.0"
 
 textlint-rule-helper@^2.0.0:
   version "2.0.0"
@@ -5375,50 +5364,44 @@ textlint-rule-write-good@^1.6.0:
     textlint-rule-helper "^2.0.0"
     write-good "^0.10.0"
 
-textlint@^9.1.1:
-  version "9.1.1"
-  resolved "https://registry.yarnpkg.com/textlint/-/textlint-9.1.1.tgz#8dc24e348f1e5e328089934f37fb0c71d9c4dfb9"
+textlint@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/textlint/-/textlint-10.0.0.tgz#d0fa372ba90c3bae1a5440c9c6a94a16477c0fee"
   dependencies:
-    "@textlint/ast-node-types" "^2.0.0"
-    "@textlint/feature-flag" "^2.0.0"
-    "@textlint/kernel" "^1.0.3"
+    "@textlint/ast-node-types" "^3.0.0"
+    "@textlint/feature-flag" "^3.0.0"
+    "@textlint/kernel" "^2.0.0"
+    "@types/bluebird" "^3.5.18"
     bluebird "^3.0.5"
-    chalk "^1.1.1"
     debug "^2.1.0"
     deep-equal "^1.0.1"
-    diff "^2.2.2"
     file-entry-cache "^2.0.0"
     get-stdin "^5.0.1"
     glob "^7.1.1"
     interop-require "^1.0.0"
     is-file "^1.0.0"
     log-symbols "^1.0.2"
-    map-like "^1.0.1"
+    map-like "^2.0.0"
     md5 "^2.2.1"
     mkdirp "^0.5.0"
     object-assign "^4.0.1"
     optionator "^0.8.0"
     path-to-glob-pattern "^1.0.2"
-    rc-config-loader "^2.0.0"
+    rc-config-loader "^2.0.1"
     read-pkg "^1.1.0"
-    resolve "^1.4.0"
-    string-width "^1.0.1"
+    read-pkg-up "^3.0.0"
     structured-source "^3.0.2"
-    text-table "^0.2.0"
-    textlint-formatter "^1.7.3"
-    textlint-plugin-markdown "^3.0.3"
-    textlint-plugin-text "^2.0.3"
+    textlint-fixer-formatter "^2.0.0"
+    textlint-formatter "^2.0.0"
+    textlint-plugin-markdown "^4.0.0"
+    textlint-plugin-text "^3.0.0"
     try-resolve "^1.0.1"
-    txt-ast-traverse "^1.2.0"
+    txt-ast-traverse "^2.0.0"
     unique-concat "^0.2.2"
 
 the-argv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/the-argv/-/the-argv-1.0.0.tgz#0084705005730dd84db755253c931ae398db9522"
-
-throat@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/throat/-/throat-2.0.2.tgz#a9fce808b69e133a632590780f342c30a6249b02"
 
 throttleit@0.0.2:
   version "0.0.2"
@@ -5549,15 +5532,15 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
 
-txt-ast-traverse@^1.2.0, txt-ast-traverse@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/txt-ast-traverse/-/txt-ast-traverse-1.2.1.tgz#58e3fe43ddb5db5ca8b51142943b0d1b970def41"
-
-txt-to-ast@^2.0.0:
+txt-ast-traverse@^2.0.0:
   version "2.0.0"
-  resolved "https://registry.yarnpkg.com/txt-to-ast/-/txt-to-ast-2.0.0.tgz#6a00142d594235a1b169b72026c0f18cd69a3105"
+  resolved "https://registry.yarnpkg.com/txt-ast-traverse/-/txt-ast-traverse-2.0.0.tgz#ce4463e0a12f860400b0d7b9c1342aa21d135ed2"
+
+txt-to-ast@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/txt-to-ast/-/txt-to-ast-3.0.0.tgz#742eff758176ceab9cfe43bf6466dea344220fc7"
   dependencies:
-    "@textlint/ast-node-types" "^2.0.0"
+    "@textlint/ast-node-types" "^3.0.0"
 
 type-check@~0.3.2:
   version "0.3.2"
