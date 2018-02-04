@@ -12,7 +12,7 @@ const isMac = process.platform === 'darwin';
 
 const appName = app.getName();
 const appWebsite = 'https://github.com/emsk/redmine-now';
-const appCopyright = 'Copyright (c) 2016-2017 emsk';
+const appCopyright = 'Copyright (c) 2016-2018 emsk';
 const appIconFilePath = `${__dirname}/images/redmine-now-icon.png`;
 
 const sendAction = action => {
