@@ -146,18 +146,39 @@
         const container = document.getElementById('container');
         this._issueStatuses = JSON.parse(responseText).issue_statuses;
 
+        const collapsedHeaders = headers.getElementsByClassName('collapsed');
+        const collapsedIds = [];
+        for (const header of collapsedHeaders) {
+          const headerId = header.getAttribute('id');
+          collapsedIds.push(headerId.replace(/header-column-status-/g, ''));
+        }
+
         this.clear();
 
         this._issueStatuses.forEach(issueStatus => {
           const header = document.createElement('div');
           header.id = `header-column-status-${issueStatus.id}`;
           header.className = 'header-column';
+          if (collapsedIds.includes(String(issueStatus.id))) {
+            header.classList.add('collapsed');
+          }
           header.innerText = issueStatus.name;
+          header.title = issueStatus.name;
+          header.addEventListener('click', () => {
+            header.classList.toggle('collapsed');
+
+            const columnId = `column-status-${issueStatus.id}`;
+            const column = document.getElementById(columnId);
+            column.classList.toggle('collapsed');
+          });
           headers.appendChild(header);
 
           const column = document.createElement('div');
           column.id = `column-status-${issueStatus.id}`;
           column.className = isMac ? 'column' : 'column windows';
+          if (collapsedIds.includes(String(issueStatus.id))) {
+            column.classList.add('collapsed');
+          }
           container.appendChild(column);
         });
 
