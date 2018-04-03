@@ -5,7 +5,7 @@
   "scripts": {
     "start": "electron ./app/main.js",
     "clean": "./bin/clean.sh",
-    "postinstall": "install-app-deps",
+    "postinstall": "electron-builder install-app-deps",
     "lint": "yarn run lint:js && yarn run lint:css && yarn run lint:text",
     "lint:js": "./bin/lint-js.sh",
     "lint:css": "./bin/lint-css.sh",

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 cd $(dirname $0)/..
-$(yarn bin)/build --mac --win --x64 --publish never
+$(yarn bin)/electron-builder --mac --win --x64 --publish never
 
 mv './dist/Redmine Now-0.4.0.dmg' ./dist/mac/RedmineNowSetup-0.4.0.dmg
 mv './dist/Redmine Now-0.4.0.dmg.blockmap' ./dist/mac
