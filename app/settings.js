@@ -65,13 +65,14 @@
 
     validateSettings() {
       const baseTime = document.getElementById('base-time');
+
       if (baseTime.checkValidity()) {
         baseTime.classList.remove('invalid');
         return true;
-      } else {
-        baseTime.classList.add('invalid');
-        return false;
       }
+
+      baseTime.classList.add('invalid');
+      return false;
     }
 
     updateSettings() {
