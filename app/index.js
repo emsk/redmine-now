@@ -71,7 +71,7 @@
         maximizable: false,
         fullscreenable: false,
         width: isMac ? 540 : 555,
-        height: isMac ? 240 : 265,
+        height: isMac ? 245 : 270,
         parent: isMac ? null : remote.getCurrentWindow(),
         titleBarStyle: isMac ? 'hidden' : 'default'
       });

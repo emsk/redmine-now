@@ -14,6 +14,7 @@
   --text-content-color: #1f4e5f;
   --border-color: #aacfd0;
   --hover-color: #f4f7f7;
+  --invalid-color: #ef9a9a;
 }
 
 html {
@@ -23,7 +24,6 @@ html {
 
 body,
 input,
-select,
 button,
 .issue {
   background-color: var(--bg-color);
@@ -37,7 +37,6 @@ body {
 }
 
 input,
-select,
 .issue {
   border: 1px solid var(--border-color);
   color: var(--text-content-color);
@@ -46,7 +45,7 @@ select,
 
 input {
   border-radius: 3px;
-  height: 20px;
+  height: 21px;
   padding: 0 3px;
 }
 
@@ -56,12 +55,7 @@ input::-webkit-outer-spin-button {
   margin: 0;
 }
 
-select {
-  height: 21px;
-}
-
-input:focus,
-select:focus {
+input:focus {
   box-shadow: 0 0 0 1px var(--border-color);
 }
 
@@ -79,7 +73,6 @@ button:hover {
 }
 
 input:focus,
-select:focus,
 button:focus {
   outline: none;
 }
@@ -151,6 +144,18 @@ button:focus {
 .setting-number input {
   text-align: right;
   width: 60px;
+}
+
+#base-time {
+  font-size: 1em;
+}
+
+.invalid {
+  border-color: var(--invalid-color);
+}
+
+.invalid:focus {
+  box-shadow: 0 0 0 1px var(--invalid-color);
 }
 
 #setting-footer {

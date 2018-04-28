@@ -25,7 +25,7 @@ module.exports.hideTitleBar = () => {
   return true;
 };
 
-module.exports.formatDate = (date, todayTime = null) => {
+module.exports.formatDate = (date, todayTime = null, isISOFormat = false) => {
   const year = date.getFullYear();
   const month = `0${date.getMonth() + 1}`.slice(-2);
   const day = `0${date.getDate()}`.slice(-2);
@@ -36,6 +36,6 @@ module.exports.formatDate = (date, todayTime = null) => {
   if (todayTime === dateTime) {
     return `${hour}:${minute}`;
   }
-  return `${year}-${month}-${day} ${hour}:${minute}`;
+  return `${year}-${month}-${day}${isISOFormat ? 'T' : ' '}${hour}:${minute}`;
 };
 
