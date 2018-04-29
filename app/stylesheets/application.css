@@ -154,11 +154,11 @@ button:focus {
   font-size: 1em;
 }
 
-.invalid {
+#base-time:invalid {
   border-color: var(--invalid-color);
 }
 
-.invalid:focus {
+#base-time:invalid:focus {
   box-shadow: 0 0 0 1px var(--invalid-color);
 }
 

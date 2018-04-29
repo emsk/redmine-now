@@ -25,7 +25,7 @@
       });
 
       document.getElementById('save-settings-button').addEventListener('click', () => {
-        if (!this.validateSettings()) {
+        if (!document.getElementById('base-time').checkValidity()) {
           return this;
         }
 
@@ -61,18 +61,6 @@
       }
 
       return this;
-    }
-
-    validateSettings() {
-      const baseTime = document.getElementById('base-time');
-
-      if (baseTime.checkValidity()) {
-        baseTime.classList.remove('invalid');
-        return true;
-      }
-
-      baseTime.classList.add('invalid');
-      return false;
     }
 
     updateSettings() {
