@@ -44,7 +44,7 @@
 
     displayDefaultSettings() {
       document.getElementById('default-update-interval').innerHTML = defaultUpdateIntervalSec;
-      document.getElementById('base-time').value = util.formatDate(this._startupTime, null, true);
+      document.getElementById('base-time').value = util.formatDatetimeLocalValue(this._startupTime);
 
       return this;
     }
