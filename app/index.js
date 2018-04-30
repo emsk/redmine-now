@@ -170,7 +170,15 @@
             const columnId = `column-status-${issueStatus.id}`;
             const column = document.getElementById(columnId);
             column.classList.toggle('collapsed');
+
+            this.updateCollapseTime(issueStatus.id, header.classList.contains('collapsed'))
+              .hideUnreadMark(issueStatus.id);
           });
+
+          const unreadMark = document.createElement('div');
+          unreadMark.id = `unread-mark-status-${issueStatus.id}`;
+          unreadMark.className = 'unread-mark';
+          header.insertBefore(unreadMark, header.firstChild);
           headers.appendChild(header);
 
           const column = document.createElement('div');
@@ -192,6 +200,54 @@
       this._issues = [];
       document.getElementById('headers').innerHTML = '';
       document.getElementById('container').innerHTML = '';
+    }
+
+    updateCollapseTime(issueStatusId, isCollapsed) {
+      const collapseTime = JSON.parse(localStorage.getItem('collapseTime')) || {};
+
+      if (isCollapsed) {
+        Object.assign(collapseTime, {[issueStatusId]: new Date().toISOString().replace(/\.\d+Z$/, 'Z')});
+      } else {
+        delete collapseTime[issueStatusId];
+      }
+
+      localStorage.setItem('collapseTime', JSON.stringify(collapseTime));
+
+      return this;
+    }
+
+    removeCollapseTime() {
+      localStorage.removeItem('collapseTime');
+      return this;
+    }
+
+    showUnreadMark(issueStatusId) {
+      const unreadMarkElement = document.getElementById(`unread-mark-status-${issueStatusId}`);
+      unreadMarkElement.classList.add('show');
+
+      return this;
+    }
+
+    hideUnreadMark(issueStatusId) {
+      const unreadMarkElement = document.getElementById(`unread-mark-status-${issueStatusId}`);
+      unreadMarkElement.classList.remove('show');
+
+      return this;
+    }
+
+    checkUnread(issue) {
+      const collapseTime = JSON.parse(localStorage.getItem('collapseTime')) || {};
+      const time = collapseTime[issue.status.id];
+
+      if (time === undefined) {
+        return this;
+      }
+
+      if (new Date(issue.updated_on).getTime() > new Date(time).getTime()) {
+        this.showUnreadMark(issue.status.id);
+      }
+
+      return this;
     }
 
     initFetch() {
@@ -363,6 +419,8 @@
         shell.openExternal(`${url}/issues/${issue.id}`);
       });
 
+      this.checkUnread(issue);
+
       return issueElement;
     }
 
@@ -450,6 +508,7 @@
       .initStartupTime()
       .readStoredSettings()
       .overlay()
+      .removeCollapseTime()
       .fetchIssueStatus()
       .updateLastExecutionTime(redmineNow._startupTime)
       .initFetch();

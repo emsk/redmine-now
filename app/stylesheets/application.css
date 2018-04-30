@@ -205,7 +205,23 @@ button:focus {
   flex: 1;
   overflow: auto;
   padding: 2px 7px 0;
+  position: relative;
   text-align: center;
+}
+
+.unread-mark {
+  background-color: red;
+  border-radius: 50%;
+  display: none;
+  height: 0.4em;
+  left: 1px;
+  position: absolute;
+  top: 1px;
+  width: 0.4em;
+}
+
+.unread-mark.show {
+  display: block;
 }
 
 #container {
