@@ -26,11 +26,11 @@ module.exports.hideTitleBar = () => {
 };
 
 module.exports.formatDate = (date, todayTime) => {
-  let options = {hour: '2-digit', minute: '2-digit', hour12: false};
+  const options = {hour: '2-digit', minute: '2-digit', hour12: false};
   const dateTime = new Date(date.toLocaleDateString(navigator.language)).getTime();
 
   if (todayTime !== dateTime) {
-    options = Object.assign({year: 'numeric', month: '2-digit', day: '2-digit'}, options);
+    Object.assign(options, {year: 'numeric', month: '2-digit', day: '2-digit'});
   }
 
   return date.toLocaleString(navigator.language, options);
