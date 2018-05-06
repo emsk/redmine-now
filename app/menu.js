@@ -1,12 +1,8 @@
 'use strict';
 
-const electron = require('electron');
+const {remote} = require('electron');
 
-const remote = electron.remote;
-const app = remote.app;
-const dialog = remote.dialog;
-const shell = remote.shell;
-const Menu = remote.Menu;
+const {app, dialog, shell, Menu} = remote;
 
 const isMac = process.platform === 'darwin';
 

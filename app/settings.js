@@ -2,9 +2,7 @@
 
 (() => {
   const util = require('./util');
-  const electron = require('electron');
-  const ipcRenderer = electron.ipcRenderer;
-  const remote = electron.remote;
+  const {ipcRenderer, remote} = require('electron');
 
   const defaultUpdateIntervalSec = 600;
 

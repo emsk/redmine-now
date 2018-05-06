@@ -3,12 +3,8 @@
 (() => {
   const appMenu = require('./menu');
   const util = require('./util');
-  const electron = require('electron');
-  const ipcRenderer = electron.ipcRenderer;
-  const remote = electron.remote;
-  const BrowserWindow = remote.BrowserWindow;
-  const shell = remote.shell;
-  const Menu = remote.Menu;
+  const {ipcRenderer, remote} = require('electron');
+  const {BrowserWindow, shell, Menu} = remote;
 
   const isMac = process.platform === 'darwin';
 
@@ -318,7 +314,7 @@
         `page=${page}`
       ];
 
-      const projectId = this._settings.projectId;
+      const {projectId} = this._settings;
       if (projectId !== null && projectId !== '') {
         params.unshift(`project_id=${projectId}`);
       }
@@ -463,8 +459,7 @@
     }
 
     validateSettings() {
-      const url = this._settings.url;
-      const apiKey = this._settings.apiKey;
+      const {url, apiKey} = this._settings;
 
       if (url === null || url === '' || apiKey === null || apiKey === '') {
         return false;
@@ -481,8 +476,7 @@
     }
 
     overlay() {
-      const url = this._settings.url;
-      const apiKey = this._settings.apiKey;
+      const {url, apiKey} = this._settings;
       const overlayElement = document.getElementById('no-setting');
 
       if (url === null || url === '' || apiKey === null || apiKey === '') {
