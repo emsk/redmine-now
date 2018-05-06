@@ -76,7 +76,7 @@
         this._settingsWindow.setMenuBarVisibility(false);
       }
 
-      this._settingsWindow.loadURL(`file://${__dirname}/settings.html`);
+      this._settingsWindow.loadFile(`${__dirname}/settings.html`);
 
       this._settingsWindow.once('ready-to-show', () => {
         if (isMac) {

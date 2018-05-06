@@ -29,7 +29,7 @@
     Object.assign(winOptions, config.get('winBounds'));
     win = new BrowserWindow(winOptions);
 
-    win.loadURL(`file://${__dirname}/index.html`);
+    win.loadFile(`${__dirname}/index.html`);
 
     win.once('ready-to-show', () => {
       win.show();
