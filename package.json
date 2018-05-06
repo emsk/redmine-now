@@ -19,7 +19,7 @@
   "devDependencies": {
     "ava": "~0.25.0",
     "electron": "1.8.6",
-    "electron-builder": "20.11.0",
+    "electron-builder": "20.11.1",
     "spectron": "~3.8.0",
     "stylelint": "~9.2.0",
     "stylelint-config-standard": "~18.2.0",

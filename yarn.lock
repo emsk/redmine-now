@@ -1864,9 +1864,9 @@ ejs@^2.5.9, ejs@~2.5.6:
   version "2.5.9"
   resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.5.9.tgz#7ba254582a560d267437109a68354112475b0ce5"
 
-electron-builder-lib@20.11.0:
-  version "20.11.0"
-  resolved "https://registry.yarnpkg.com/electron-builder-lib/-/electron-builder-lib-20.11.0.tgz#1667fa7755cdd193a88a4ca4b935e93272ad3279"
+electron-builder-lib@20.11.1:
+  version "20.11.1"
+  resolved "https://registry.yarnpkg.com/electron-builder-lib/-/electron-builder-lib-20.11.1.tgz#0df9c1779d8018fa72c0c315b94b7283ac954515"
   dependencies:
     "7zip-bin" "~3.1.0"
     app-builder-bin "1.8.6"
@@ -1922,16 +1922,16 @@ electron-builder-lib@~20.9.0:
     semver "^5.5.0"
     temp-file "^3.1.1"
 
-electron-builder@20.11.0:
-  version "20.11.0"
-  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-20.11.0.tgz#b76fd075cf4f34f3e33a5bbf52399f15916d8567"
+electron-builder@20.11.1:
+  version "20.11.1"
+  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-20.11.1.tgz#a84feea424ac3abfa0dd1e4818dde8338250e543"
   dependencies:
     bluebird-lst "^1.0.5"
     builder-util "5.7.10"
     builder-util-runtime "4.2.0"
     chalk "^2.4.1"
     dmg-builder "4.1.5"
-    electron-builder-lib "20.11.0"
+    electron-builder-lib "20.11.1"
     electron-download-tf "4.3.4"
     fs-extra-p "^4.5.2"
     is-ci "^1.1.0"
