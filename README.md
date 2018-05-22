@@ -4,7 +4,6 @@
 
 <p align="center">
   <a href="https://travis-ci.org/emsk/redmine-now"><img src="https://travis-ci.org/emsk/redmine-now.svg" alt="Build Status"></a>
-  <a href="https://gemnasium.com/github.com/emsk/redmine-now"><img src="https://gemnasium.com/badges/github.com/emsk/redmine-now.svg" alt="Dependency Status"></a>
   <a href="https://github.com/sindresorhus/xo"><img src="https://img.shields.io/badge/code_style-XO-5ed9c7.svg" alt="XO code style"></a>
   <a href="https://github.com/emsk/redmine-now/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
 </p>
