@@ -30,7 +30,7 @@
   },
   "build": {
     "appId": "com.emsk.redmine-now",
-    "copyright": "Copyright (c) 2016-2018 emsk",
+    "copyright": "Copyright (c) 2016-2019 emsk",
     "mac": {
       "category": "public.app-category.productivity",
       "target": "dmg"
